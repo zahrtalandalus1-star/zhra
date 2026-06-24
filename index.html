@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl"><head>
+<html lang="ar" dir="rtl">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>مؤسسة زهرة الأندلس | الرخام والحجر الطبيعي والأعمال الهندسية</title>
   <meta name="description" content="صفحة تعريفية لمؤسسة زهرة الأندلس، متخصصة في الرخام والحجر الطبيعي والأعمال الهندسية، مع لوحة تحكم كاملة لإدارة الفروع والمشاريع وقنوات التواصل.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     :root {
@@ -226,18 +227,6 @@
     .stat-val { font-size: 24px; font-weight: 800; color: #ead0a8; display: block; }
     .stat-lbl { font-size: 12px; color: rgba(255,255,255,0.7); }
 
-    /* 🎨 تنسيقات إضافية محسنة لقسم من نحن الجديد والمقسم كشبكة */
-    .about-grid { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center; margin-top: 15px; }
-    @media(min-width: 850px) { .about-grid { grid-template-columns: 1.2fr 0.8fr; } }
-    .about-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
-    .about-feat-card { padding: 16px; background: rgba(0,0,0,0.02); border: 1px solid var(--line); border-radius: var(--radius-sm); display: flex; gap: 12px; align-items: flex-start; }
-    body[data-theme="dark"] .about-feat-card { background: rgba(255,255,255,0.02); }
-    .about-feat-icon { font-size: 20px; color: var(--primary); margin-top: 4px; }
-    .about-feat-title { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
-    .about-feat-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
-    .about-image-box { width: 100%; height: 100%; min-height: 280px; max-height: 380px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow-soft); }
-    .about-image-box img { width: 100%; height: 100%; object-fit: cover; }
-
     .data-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; margin-top: 20px; }
     .item-card { background: var(--surface-strong); border: 1px solid var(--line); border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow-soft); }
     .item-media { height: 190px; background: #eae5db; overflow: hidden; position: relative; }
@@ -250,6 +239,14 @@
     .branch-inner { display: grid; gap: 12px; margin-top: 10px; padding: 14px; background: rgba(0,0,0,0.02); border-radius: var(--radius-sm); border: 1px solid var(--line); }
     .manager-tag { font-size: 13px; font-weight: 700; color: var(--secondary); display: flex; align-items: center; gap: 6px; }
     
+    /* تنسيقات أزرار الاتصال المصغرة داخل بطاقات الفروع */
+    .branch-communication-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13px; }
+    .branch-action-icons { display: flex; gap: 6px; align-items: center; }
+    .mini-comm-btn { width: 28px; height: 28px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; text-decoration: none; transition: var(--transition); }
+    .mini-comm-btn:hover { transform: scale(1.1); }
+    .mini-comm-btn.phone-btn { background: var(--secondary); }
+    .mini-comm-btn.whatsapp-btn { background: #25D366; }
+
     .banks-container-box { display: flex; flex-direction: column; gap: 8px; width: 100%; }
     .bank-select-wrapper { display: flex; flex-direction: column; gap: 5px; }
     .bank-select-wrapper label { font-size: 11px; font-weight: bold; color: var(--muted); }
@@ -277,23 +274,144 @@
 </head>
 <body data-theme="light">
 
-  
+  <div class="admin-bar" id="adminBar">
+    <div class="admin-logo-title">
+      <i class="fa-solid fa-layer-group"></i>
+      <span>بوابة الأندلس الذكية <small style="color: var(--success); font-weight: normal;">(إصدار سحابي 3.0)</small></span>
+    </div>
+    <div class="admin-btns">
+      <button class="btn btn-primary" id="loginTriggerBtn" onclick="openLogin()"><i class="fa-solid fa-lock"></i> دخول المدير</button>
+      <button class="btn btn-warning" id="dashboardPanelBtn" onclick="openAdminPanel()" style="display: none;"><i class="fa-solid fa-sliders"></i> لوحة التحكم</button>
+      <button class="btn btn-success" id="logoutBtn" onclick="logoutAdmin()" style="display: none;"><i class="fa-solid fa-door-open"></i> خروج</button>
+    </div>
+  </div>
 
   <button class="theme-fab" onclick="toggleTheme()" title="تبديل المظهر"><i class="fa-solid fa-moon"></i></button>
 
-  
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-card">
+      <i class="fa-solid fa-shield-halved" style="font-size: 40px; color: var(--primary);"></i>
+      <div>
+        <h3 style="font-weight: 800;">تسجيل دخول المدير</h3>
+        <p style="font-size: 12px; color: var(--muted);">أدخل كلمة المرور للوصول إلى لوحة معالجة البيانات</p>
+      </div>
+      <div class="form-group" style="text-align: right;">
+        <input type="password" id="adminPasswordInput" class="form-control" placeholder="كلمة المرور">
+        <span id="loginError" style="color: var(--danger); font-size: 11px; display: none; margin-top: 4px;">كلمة المرور خاطئة!</span>
+      </div>
+      <div style="display: flex; gap: 8px; justify-content: flex-end;">
+        <button class="btn btn-secondary" onclick="closeLogin()">إلغاء</button>
+        <button class="btn btn-primary" onclick="verifyAdminLogin()">دخول</button>
+      </div>
+    </div>
+  </div>
 
-  
+  <div class="admin-modal" id="adminModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-weight: 800; font-size: 16px;"><i class="fa-solid fa-gears"></i> لوحة إدارة المحتوى وقواعد البيانات</h3>
+        <button onclick="closeAdminPanel()" style="background:transparent; border:0; color:#fff; cursor:pointer; font-size: 20px;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-tabs">
+        <div class="modal-tab active" onclick="switchTab(event, 'tab-general')">الإعدادات العامة والتواصل</div>
+        <div class="modal-tab" onclick="switchTab(event, 'tab-products')">المنتجات والخامات</div>
+        <div class="modal-tab" onclick="switchTab(event, 'tab-projects')">معرض المشاريع</div>
+        <div class="modal-tab" onclick="switchTab(event, 'tab-branches')">الفروع والحسابات البنكية</div>
+      </div>
+      <div class="modal-body">
+        
+        <div class="tab-pane" id="tab-general" style="display: block;">
+          <div class="form-row" style="margin-bottom: 12px;">
+            <div class="form-group"><label>اسم المؤسسة</label><input type="text" id="inp-brandName" class="form-control"></div>
+            <div class="form-group"><label>الوصف الفرعي</label><input type="text" id="inp-brandSubtitle" class="form-control"></div>
+          </div>
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label><i class="fa-brands fa-google-drive"></i> رابط صورة الشعار</label>
+            <input type="text" id="inp-logoUrl" class="form-control">
+          </div>
+          <div class="form-group" style="margin-bottom: 12px;"><label>عنوان قسم الـ Hero الرئيسي</label><input type="text" id="inp-heroTitle" class="form-control"></div>
+          <div class="form-group" style="margin-bottom: 16px;"><label>نص الوصف الطويل</label><textarea id="inp-heroDesc" class="form-control" rows="2"></textarea></div>
+          
+          <div style="padding: 16px; background: rgba(141,106,59,0.05); border-radius: var(--radius-sm); border: 1px solid var(--line);">
+            <h4 style="font-weight: 800; font-size: 14px; margin-bottom: 14px; color: var(--primary-dark);"><i class="fa-solid fa-share-nodes"></i> روابط شبكات وقنوات التواصل الاجتماعي الشاملة</h4>
+            
+            <div class="social-grid-layout">
+              <div class="form-group">
+                <label><i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> رقم / رابط الواتساب</label>
+                <input type="text" id="inp-linkWhatsapp" class="form-control" placeholder="9665xxxxxxxx">
+              </div>
+              <div class="form-group">
+                <label><i class="fa-brands fa-x-twitter"></i> تويتر (X)</label>
+                <input type="text" id="inp-linkTwitter" class="form-control" placeholder="https://twitter.com/...">
+              </div>
+              <div class="form-group">
+                <label><i class="fa-brands fa-instagram" style="color: #E1306C;"></i> إنستغرام</label>
+                <input type="text" id="inp-linkInstagram" class="form-control" placeholder="https://instagram.com/...">
+              </div>
+              <div class="form-group">
+                <label><i class="fa-brands fa-tiktok"></i> تيك توك</label>
+                <input type="text" id="inp-linkTiktok" class="form-control" placeholder="https://tiktok.com/@...">
+              </div>
+              <div class="form-group">
+                <label><i class="fa-brands fa-snapchat" style="color: #ea9513;"></i> سناب شات</label>
+                <input type="text" id="inp-linkSnapchat" class="form-control" placeholder="https://snapchat.com/add/...">
+              </div>
+              <div class="form-group">
+                <label><i class="fa-brands fa-facebook" style="color: #1877F2;"></i> فيسبوك</label>
+                <input type="text" id="inp-linkFacebook" class="form-control" placeholder="https://facebook.com/...">
+              </div>
+              <div class="form-group social-grid-full-width">
+                <label><i class="fa-brands fa-youtube" style="color: #FF0000;"></i> يوتيوب</label>
+                <input type="text" id="inp-linkYoutube" class="form-control" placeholder="https://youtube.com/...">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="tab-products" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <p style="font-size: 12px; color: var(--muted);">قم بإضافة وتعديل خامات الرخام والحجر الطبيعي:</p>
+            <button class="btn btn-primary" onclick="addNewProductToJSON()"><i class="fa-solid fa-plus"></i> إضافة منتج جديد</button>
+          </div>
+          <div id="admin-products-list" style="display: flex; flex-direction: column; gap: 14px;"></div>
+        </div>
+
+        <div class="tab-pane" id="tab-projects" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <p style="font-size: 12px; color: var(--muted);">إدارة واستعراض سجل المشاريع الحية المنجزة:</p>
+            <button class="btn btn-primary" onclick="addNewProjectToJSON()"><i class="fa-solid fa-plus"></i> إضافة مشروع جديد</button>
+          </div>
+          <div id="admin-projects-list" style="display: flex; flex-direction: column; gap: 14px;"></div>
+        </div>
+
+        <div class="tab-pane" id="tab-branches" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <p style="font-size: 12px; color: var(--muted);">إدارة الفروع، المشرفين، وإضافة أكثر من حساب بنكي لكل فرع:</p>
+            <button class="btn btn-primary" onclick="addNewBranchToJSON()"><i class="fa-solid fa-plus"></i> إضافة فرع جديد</button>
+          </div>
+          <div id="admin-branches-list" style="display: flex; flex-direction: column; gap: 14px;"></div>
+        </div>
+
+      </div>
+      <div style="padding: 14px; border-top: 1px solid var(--line); background: rgba(0,0,0,0.02); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-secondary" onclick="exportDataJSON()"><i class="fa-solid fa-code"></i> تصدير البيانات JSON</button>
+          <button class="btn btn-warning" onclick="exportCleanClientHtml()"><i class="fa-solid fa-cloud-arrow-down"></i> تصدير النسخة النهائية للعملاء</button>
+        </div>
+        <button class="btn btn-success" onclick="saveAdminDashboard()"><i class="fa-solid fa-square-check"></i> حفظ وتحديث المنصة السحابية</button>
+      </div>
+    </div>
+  </div>
 
   <div class="container" style="padding-top: 10px;">
     <section class="hero">
       <div class="hero-shell" id="view-heroBg">
         <div class="brand-area">
           <div style="display: flex; align-items: center; gap: 14px;">
-            <div class="logo-box"><img id="view-brandLogo" src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1-Nk1Wg2GV6FTtvquELG0tccIKmvnkcjg" alt="الشعار"></div>
+            <div class="logo-box"><img id="view-brandLogo" src="https://via.placeholder.com/160x160.png?text=ZA" alt="الشعار"></div>
             <div>
-              <h2 id="view-brandName" style="font-weight: 800; font-size: clamp(1.2rem, 3.5vw, 1.6rem);">مؤسسة زهرة الأندلس للرخام و السيراميك</h2>
-              <p id="view-brandSubtitle" style="font-size: 13px; color: rgba(255,255,255,0.75);">قدم في مؤسسة زهرة الأندلس حلولاً متكاملة في توريد وتركيب الرخام والحجر الطبيعي والأعمال الهندسية، مع عناية دقيقة بالتفاصيل، واختيار واعٍ للمواد، وتنفيذ يوازن بين الجمال والمتانة في المشاريع السكنية والتجارية.</p>
+              <h2 id="view-brandName" style="font-weight: 800; font-size: clamp(1.2rem, 3.5vw, 1.6rem);"></h2>
+              <p id="view-brandSubtitle" style="font-size: 13px; color: rgba(255,255,255,0.75);"></p>
             </div>
           </div>
           <div class="sheet-nav">
@@ -306,58 +424,23 @@
         <div class="hero-grid">
           <div class="hero-copy">
             <span class="eyebrow"><i class="fa-solid fa-shield-halved"></i> جودة المواد · احترافية هندسية كاملة</span>
-            <h1 id="view-heroTitle" style="margin-top: 12px;">شريك يعتمد عليه في الرخام والحجر الطبيعي والأعمال الهندسية</h1>
-            <p id="view-heroDesc">بني أعمالنا على فهم احتياج المشروع منذ البداية، ثم توفير و اختيار الخامات المناسبة، ثم التنفيذ بعناية تضمن جودة المظهر وطول العمر التشغيلي. نعمل بروح احترافية تجمع بين الخبرة الفنية، والالتزام بالمواعيد، والتنسيق السلس مع متطلبات العملاء والمواقع المختلفة.</p>
-            <div class="social-links-wrap" id="view-socialContainer"><a href="https://wa.me/966557278262" target="_blank" class="social-btn wa" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a><a href="https://x.com/zahrtalandalus1" target="_blank" class="social-btn tw" title="تويتر X"><i class="fa-brands fa-x-twitter"></i></a><a href="https://www.instagram.com/zahrtalandalus" target="_blank" class="social-btn inst" title="إنستغرام"><i class="fa-brands fa-instagram"></i></a><a href="https://www.tiktok.com/@zahrtalandalus1" target="_blank" class="social-btn tt" title="تيك توك"><i class="fa-brands fa-tiktok"></i></a><a href="https://www.snapchat.com/add/zahrtalandalus" target="_blank" class="social-btn snap" title="سناب شات"><i class="fa-brands fa-snapchat"></i></a><a href="https://www.facebook.com/zahrt.alandalus.2025" target="_blank" class="social-btn fb" title="فيسبوك"><i class="fa-brands fa-facebook"></i></a><a href="https://www.youtube.com/@zahrtalandalus1-b5l" target="_blank" class="social-btn yt" title="يوتيوب"><i class="fa-brands fa-youtube"></i></a></div>
+            <h1 id="view-heroTitle" style="margin-top: 12px;"></h1>
+            <p id="view-heroDesc"></p>
+            <div class="social-links-wrap" id="view-socialContainer"></div>
             <div style="display: flex; gap: 10px; flex-wrap: wrap;">
               <a href="#quote-sec" class="btn btn-primary"><i class="fa-solid fa-file-invoice-dollar"></i> اطلب تسعيرة الآن</a>
             </div>
           </div>
-          <div class="stats-grid" id="view-stats-container">
-          <div class="stat-card"><span class="stat-val">+18</span><span class="stat-lbl">سنوات خبرة في التوريد والتنفيذ</span></div>
-        
-          <div class="stat-card"><span class="stat-val">+150</span><span class="stat-lbl">مشروعاً ناجحاً</span></div>
-        
-          <div class="stat-card"><span class="stat-val">24/7</span><span class="stat-lbl">متابعة واستجابة</span></div>
-        
-          <div class="stat-card"><span class="stat-val">100%</span><span class="stat-lbl">تركيز على الجودة</span></div>
-        </div>
+          <div class="stats-grid" id="view-stats-container"></div>
         </div>
       </div>
     </section>
 
     <section class="section" id="about-sec">
-      <div class="about-grid">
-        <div>
-          <div class="section-header" style="margin-bottom: 16px;">
-            <span class="eyebrow"><i class="fa-solid fa-address-card"></i> هويتنا الفنية</span>
-            <h2 class="section-title">التزام راسخ ببناء واجهات مستدامة وعالية الجودة</h2>
-            <p class="section-desc" style="margin-top: 8px;">نهتم في زهرة الأندلس بالبناء على أساس هندسي سليم، ونوفر لعملائنا الفهم الوافي للمواد قبل الشراء لضمان سلامة واستدامة الديكورات الخارجية والداخلية.</p>
-          </div>
-          
-          <div class="about-features">
-            <div class="about-feat-card">
-              <i class="fa-solid fa-compass-drafting about-feat-icon"></i>
-              <div>
-                <h4 class="about-feat-title">الأمانة الهندسية</h4>
-                <p class="about-feat-desc">دراسة دقيقة للمقاسات والأوزان لضمان أعلى معايير السلامة الإنشائية للمباني.</p>
-              </div>
-            </div>
-            <div class="about-feat-card">
-              <i class="fa-solid fa-gem about-feat-icon"></i>
-              <div>
-                <h4 class="about-feat-title">خامات منتقاة</h4>
-                <p class="about-feat-desc">نوفر أجود أنواع الرخام والحجر الطبيعي التي تتحمل العوامل الجوية المختلفة كفاءة.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div>
-          <div class="about-image-box">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="أعمال الرخام الهندسية بمؤسسة زهرة الأندلس">
-          </div>
-        </div>
+      <div class="section-header">
+        <span class="eyebrow"><i class="fa-solid fa-address-card"></i> هويتنا الفنية</span>
+        <h2 class="section-title">التزام راسخ ببناء واجهات مستدامة وعالية الجودة</h2>
+        <p class="section-desc">نهتم في زهرة الأندلس بالبناء على أساس هندسي سليم، ونوفر لعملائنا الفهم الوافي للمواد قبل الشراء لضمان سلامة واستدامة الديكورات الخارجية والداخلية.</p>
       </div>
     </section>
 
@@ -367,16 +450,7 @@
         <h2 class="section-title">تشكيلة واسعة من الرخام والحجر الطبيعي الممتاز</h2>
         <p class="section-desc">مستخرجة ومصنعة بأعلى درجات المعايرة والمقاييس المعمارية.</p>
       </div>
-      <div class="data-grid" id="view-products-grid">
-        <div class="item-card">
-          <div class="item-media"><img src="https://via.placeholder.com/400x190.png?text=No+Image" alt="خامة جديدة"></div>
-          <div class="item-body">
-            <span class="item-meta">خامة ممتازة</span>
-            <h3 class="item-title">خامة جديدة</h3>
-            <p class="item-desc"></p>
-          </div>
-        </div>
-      </div>
+      <div class="data-grid" id="view-products-grid"></div>
     </section>
 
     <section class="section" id="projects-sec">
@@ -394,157 +468,7 @@
         <h2 class="section-title">الفروع ومواقعها على قوقل ماب الحية</h2>
         <p class="section-desc">تواصل مباشرة مع الفرع المختص واضغط على زر الموقع الجغرافي للوصول الميداني إلينا بسهولة.</p>
       </div>
-      <div class="data-grid" id="view-branches-grid">
-          <div class="item-card">
-            <div class="item-body">
-              <h3 class="item-title" style="color:var(--primary); display:flex; justify-content:space-between; align-items:center;">
-                <span>المستودع الرئيسي</span>
-                <a href="https://maps.app.goo.gl/ozNVReUmSgpAr41y7" target="_blank" class="btn btn-primary" style="min-height:30px; padding:0 10px; font-size:11px; border-radius:6px;"><i class="fa-solid fa-map-location-dot"></i> موقع الفرع</a>
-              </h3>
-              <div class="branch-inner">
-                <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: محمد عبد الوهاب</div>
-                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">0507524671</span></div>
-              </div>
-              <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
-                <div class="banks-container-box">
-                  
-                    <div class="bank-select-wrapper">
-                      <label><i class="fa-solid fa-building-columns"></i> اختر البنك للتحويل:</label>
-                      <select class="form-control" style="padding: 6px 10px; font-size:13px;" onchange="onBranchBankChange(this, 0)">
-                        <option value="0">مصرف الراجحي</option><option value="1">مصرف الاهلي</option>
-                      </select>
-                    </div>
-                  
-                  <div class="iban-copy-row">
-                    <div class="iban-display-field" id="iban-display-b0">SA308000010006080567328</div>
-                    <button class="btn-copy-action" onclick="copyIbanText('iban-display-b0')" title="نسخ الآيبان"><i class="fa-solid fa-copy"></i> نسخ</button>
-                  </div>
-                  <div style="font-size:11px; color:var(--muted); margin-top:2px;" id="holder-display-b0"> | الاسم: مؤسسة زهرة الأندلس</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        
-          <div class="item-card">
-            <div class="item-body">
-              <h3 class="item-title" style="color:var(--primary); display:flex; justify-content:space-between; align-items:center;">
-                <span>فرع رقم 2 (الهدى سابقا)</span>
-                <a href="https://maps.app.goo.gl/EZFFMQXqJ6THAaZC8" target="_blank" class="btn btn-primary" style="min-height:30px; padding:0 10px; font-size:11px; border-radius:6px;"><i class="fa-solid fa-map-location-dot"></i> موقع الفرع</a>
-              </h3>
-              <div class="branch-inner">
-                <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: محمد</div>
-                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">-</span></div>
-              </div>
-              <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
-                <div class="banks-container-box">
-                  
-                    <div class="bank-select-wrapper">
-                      <label><i class="fa-solid fa-building-columns"></i> اختر البنك للتحويل:</label>
-                      <select class="form-control" style="padding: 6px 10px; font-size:13px;" onchange="onBranchBankChange(this, 1)">
-                        <option value="0">مصرف الاهلي</option>
-                      </select>
-                    </div>
-                  
-                  <div class="iban-copy-row">
-                    <div class="iban-display-field" id="iban-display-b1">SA5710000001400034710905</div>
-                    <button class="btn-copy-action" onclick="copyIbanText('iban-display-b1')" title="نسخ الآيبان"><i class="fa-solid fa-copy"></i> نسخ</button>
-                  </div>
-                  <div style="font-size:11px; color:var(--muted); margin-top:2px;" id="holder-display-b1"> | الاسم: مؤسسة زهرة الأندلس</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        
-          <div class="item-card">
-            <div class="item-body">
-              <h3 class="item-title" style="color:var(--primary); display:flex; justify-content:space-between; align-items:center;">
-                <span>الفرع ( الرئيسي )</span>
-                <a href="https://maps.app.goo.gl/ozNVReUmSgpAr41y7" target="_blank" class="btn btn-primary" style="min-height:30px; padding:0 10px; font-size:11px; border-radius:6px;"><i class="fa-solid fa-map-location-dot"></i> موقع الفرع</a>
-              </h3>
-              <div class="branch-inner">
-                <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: محمد</div>
-                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">0545858177</span></div>
-              </div>
-              <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
-                <div class="banks-container-box">
-                  
-                    <div class="bank-select-wrapper">
-                      <label><i class="fa-solid fa-building-columns"></i> اختر البنك للتحويل:</label>
-                      <select class="form-control" style="padding: 6px 10px; font-size:13px;" onchange="onBranchBankChange(this, 2)">
-                        <option value="0">مصرف الاهلي</option><option value="1">مصرف الراجحي</option>
-                      </select>
-                    </div>
-                  
-                  <div class="iban-copy-row">
-                    <div class="iban-display-field" id="iban-display-b2">SA681000000570000129507</div>
-                    <button class="btn-copy-action" onclick="copyIbanText('iban-display-b2')" title="نسخ الآيبان"><i class="fa-solid fa-copy"></i> نسخ</button>
-                  </div>
-                  <div style="font-size:11px; color:var(--muted); margin-top:2px;" id="holder-display-b2"> | الاسم: مؤسسة زهرة الأندلس</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        
-          <div class="item-card">
-            <div class="item-body">
-              <h3 class="item-title" style="color:var(--primary); display:flex; justify-content:space-between; align-items:center;">
-                <span>فرع رقم 3 (البوابة سابقا)</span>
-                <a href="https://maps.app.goo.gl/CByPQy7vfRsyeR277" target="_blank" class="btn btn-primary" style="min-height:30px; padding:0 10px; font-size:11px; border-radius:6px;"><i class="fa-solid fa-map-location-dot"></i> موقع الفرع</a>
-              </h3>
-              <div class="branch-inner">
-                <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: محمد</div>
-                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">0560822558</span></div>
-              </div>
-              <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
-                <div class="banks-container-box">
-                  
-                    <div class="bank-select-wrapper">
-                      <label><i class="fa-solid fa-building-columns"></i> اختر البنك للتحويل:</label>
-                      <select class="form-control" style="padding: 6px 10px; font-size:13px;" onchange="onBranchBankChange(this, 3)">
-                        <option value="0">مصرف الاهلي</option>
-                      </select>
-                    </div>
-                  
-                  <div class="iban-copy-row">
-                    <div class="iban-display-field" id="iban-display-b3">SA6210000001400034711106</div>
-                    <button class="btn-copy-action" onclick="copyIbanText('iban-display-b3')" title="نسخ الآيبان"><i class="fa-solid fa-copy"></i> نسخ</button>
-                  </div>
-                  <div style="font-size:11px; color:var(--muted); margin-top:2px;" id="holder-display-b3"> | الاسم: مؤسسة زهرة الأندلس</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        
-          <div class="item-card">
-            <div class="item-body">
-              <h3 class="item-title" style="color:var(--primary); display:flex; justify-content:space-between; align-items:center;">
-                <span>فرع رقم 4 (فنون سابقا)</span>
-                <a href="https://maps.app.goo.gl/sYwWtg6xJoFRbyXn8" target="_blank" class="btn btn-primary" style="min-height:30px; padding:0 10px; font-size:11px; border-radius:6px;"><i class="fa-solid fa-map-location-dot"></i> موقع الفرع</a>
-              </h3>
-              <div class="branch-inner">
-                <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: محمد</div>
-                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">0557278262</span></div>
-              </div>
-              <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
-                <div class="banks-container-box">
-                  
-                    <div class="bank-select-wrapper">
-                      <label><i class="fa-solid fa-building-columns"></i> اختر البنك للتحويل:</label>
-                      <select class="form-control" style="padding: 6px 10px; font-size:13px;" onchange="onBranchBankChange(this, 4)">
-                        <option value="0">البنك الجديد</option><option value="1">البنك الجديد</option>
-                      </select>
-                    </div>
-                  
-                  <div class="iban-copy-row">
-                    <div class="iban-display-field" id="iban-display-b4">SA000000</div>
-                    <button class="btn-copy-action" onclick="copyIbanText('iban-display-b4')" title="نسخ الآيبان"><i class="fa-solid fa-copy"></i> نسخ</button>
-                  </div>
-                  <div style="font-size:11px; color:var(--muted); margin-top:2px;" id="holder-display-b4"> | الاسم: مؤسسة زهرة الأندلس</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="data-grid" id="view-branches-grid"></div>
     </section>
 
     <section class="section" id="quote-sec" style="border-top: 3px solid var(--primary);">
@@ -556,14 +480,14 @@
       <div class="quote-form-container">
         <form id="purchaseQuoteForm" onsubmit="handleQuoteFormSubmit(event)">
           <div class="form-row" style="margin-bottom: 12px;">
-            <div class="form-group"><label>الاسم الكريم</label><input type="text" id="quote-name" class="form-control" placeholder="مثال: خالد محمد" required=""></div>
-            <div class="form-group"><label>رقم الجوال (الواتساب)</label><input type="tel" id="quote-phone" class="form-control" placeholder="مثال: 05xxxxxxx" required=""></div>
+            <div class="form-group"><label>الاسم الكريم</label><input type="text" id="quote-name" class="form-control" placeholder="مثال: خالد محمد" required></div>
+            <div class="form-group"><label>رقم الجوال (الواتساب)</label><input type="tel" id="quote-phone" class="form-control" placeholder="مثال: 05xxxxxxx" required></div>
           </div>
           <div class="form-row" style="margin-bottom: 12px;">
-            <div class="form-group"><label>المدينة / المنطقة</label><input type="text" id="quote-city" class="form-control" placeholder="مثال: الهفوف، الدمام" required=""></div>
+            <div class="form-group"><label>المدينة / المنطقة</label><input type="text" id="quote-city" class="form-control" placeholder="مثال: الهفوف، الدمام" required></div>
             <div class="form-group">
               <label>نوع الخدمة المطلوبة</label>
-              <select id="quote-service" class="form-control" required="">
+              <select id="quote-service" class="form-control" required>
                 <option value="">اختر الخدمة...</option>
                 <option value="توريد وتركيب رخام داخلي">توريد وتركيب رخام داخلي</option>
                 <option value="واجهات حجر طبيعي خارجي">واجهات حجر طبيعي خارجي</option>
@@ -578,8 +502,8 @@
   </div>
 
   <footer class="container" style="text-align: center; padding: 24px 0; font-size: 12px; color: var(--muted); border-top: 1px solid var(--line);">
-    <p style="margin-bottom: 8px;">© 2026 جميع الحقوق محفوظة لـ <span id="footer-brand">مؤسسة زهرة الأندلس للرخام و السيراميك</span></p>
-    <div id="footer-socials" style="display: flex; justify-content: center; gap: 8px;"><a href="https://wa.me/966557278262" target="_blank" class="social-btn wa" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a><a href="https://x.com/zahrtalandalus1" target="_blank" class="social-btn tw" title="تويتر X"><i class="fa-brands fa-x-twitter"></i></a><a href="https://www.instagram.com/zahrtalandalus" target="_blank" class="social-btn inst" title="إنستغرام"><i class="fa-brands fa-instagram"></i></a><a href="https://www.tiktok.com/@zahrtalandalus1" target="_blank" class="social-btn tt" title="تيك توك"><i class="fa-brands fa-tiktok"></i></a><a href="https://www.snapchat.com/add/zahrtalandalus" target="_blank" class="social-btn snap" title="سناب شات"><i class="fa-brands fa-snapchat"></i></a><a href="https://www.facebook.com/zahrt.alandalus.2025" target="_blank" class="social-btn fb" title="فيسبوك"><i class="fa-brands fa-facebook"></i></a><a href="https://www.youtube.com/@zahrtalandalus1-b5l" target="_blank" class="social-btn yt" title="يوتيوب"><i class="fa-brands fa-youtube"></i></a></div>
+    <p style="margin-bottom: 8px;">© 2026 جميع الحقوق محفوظة لـ <span id="footer-brand">مؤسسة زهرة الأندلس</span></p>
+    <div id="footer-socials" style="display: flex; justify-content: center; gap: 8px;"></div>
   </footer>
 
   <script>
@@ -614,8 +538,8 @@
         linkFacebook: "",
         linkYoutube: "",
         stats: [
-          { val: "+18", lbl: "سنوات خبرة في التوريد والتنفيذ" },
-          { val: "+160", lbl: "مشروعاً ناجحاً" },
+          { val: "+12", lbl: "سنوات خبرة في التوريد والتنفيذ" },
+          { val: "+150", lbl: "مشروعاً ناجحاً" },
           { val: "24/7", lbl: "متابعة واستجابة" },
           { val: "100%", lbl: "تركيز على الجودة" }
         ]
@@ -739,6 +663,11 @@
           initialHolder = b.banks[0].holderName ? ` | الاسم: ${b.banks[0].holderName}` : '';
         }
 
+        // تنظيف الرقم من أي مسافات لاستخدامه في الروابط المباشرة
+        const cleanPhone = b.phone ? b.phone.trim().replace(/\s+/g, '') : '';
+        // تهيئة رقم الواتساب ليتناسب مع الصيغة الدولية المفضلة
+        const whatsappPhone = cleanPhone.startsWith('05') ? `966${cleanPhone.substring(1)}` : cleanPhone;
+
         return `
           <div class="item-card">
             <div class="item-body">
@@ -748,7 +677,15 @@
               </h3>
               <div class="branch-inner">
                 <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: ${b.manager || 'غير محدد'}</div>
-                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">${b.phone || '-'}</span></div>
+                <div class="branch-communication-row">
+                  <div><i class="fa-solid fa-phone"></i> جوال: <span style="direction:ltr; display:inline-block; font-weight:600;">${b.phone || '-'}</span></div>
+                  ${cleanPhone ? `
+                    <div class="branch-action-icons">
+                      <a href="tel:${cleanPhone}" class="mini-comm-btn phone-btn" title="اتصال هاتفي مباشر"><i class="fa-solid fa-phone"></i></a>
+                      <a href="https://api.whatsapp.com/send?phone=${whatsappPhone}&text=${encodeURIComponent('السلام عليكم ورحمة الله وبركاته، أود الاستفسار من مؤسسة زهرة الأندلس.')}" target="_blank" class="mini-comm-btn whatsapp-btn" title="تواصل عبر الواتساب"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                  ` : ''}
+                </div>
               </div>
               <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
                 <div class="banks-container-box">
@@ -836,14 +773,6 @@
       document.getElementById('inp-linkFacebook').value = cfg.linkFacebook || '';
       document.getElementById('inp-linkYoutube').value = cfg.linkYoutube || '';
 
-      // 📥 ملء حقول الإحصائيات الأربعة في لوحة الإدارة عند فتحها
-      if (cfg.stats && cfg.stats.length >= 4) {
-        for (let i = 0; i < 4; i++) {
-          document.getElementById(`inp-statVal${i}`).value = cfg.stats[i].val || '';
-          document.getElementById(`inp-statLbl${i}`).value = cfg.stats[i].lbl || '';
-        }
-      }
-
       refreshAdminLists();
     }
 
@@ -864,15 +793,6 @@
       ZahratAndalusData.config.linkSnapchat = document.getElementById('inp-linkSnapchat').value;
       ZahratAndalusData.config.linkFacebook = document.getElementById('inp-linkFacebook').value;
       ZahratAndalusData.config.linkYoutube = document.getElementById('inp-linkYoutube').value;
-
-      // 📥 حفظ ومزامنة قيم الإحصائيات الأربعة الجديدة المدخلة من لوحة الإدارة
-      if (!ZahratAndalusData.config.stats) ZahratAndalusData.config.stats = [{}, {}, {}, {}];
-      for (let i = 0; i < 4; i++) {
-        ZahratAndalusData.config.stats[i] = {
-          val: document.getElementById(`inp-statVal${i}`).value,
-          lbl: document.getElementById(`inp-statLbl${i}`).value
-        };
-      }
 
       const productCards = document.querySelectorAll('#admin-products-list .cms-card-item');
       productCards.forEach((card, i) => {
@@ -1059,5 +979,5 @@
       document.querySelector('.theme-fab i').className = nextTheme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
     }
   </script>
-
-</body></html>
+</body>
+</html>
