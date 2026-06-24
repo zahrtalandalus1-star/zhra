@@ -196,23 +196,23 @@
       color: #fff; padding: 32px; border-radius: var(--radius-lg); display: grid; gap: 24px;
     }
     .brand-area { display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 14px; }
-       .logo-box { 
-      width: 68px; 
-      height: 68px; 
-      border-radius: 50%; 
-      overflow: hidden; 
-      border: 3px solid rgba(255, 255, 255, 0.25); 
-      background: #fff; 
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      /* ======================================================= */
+    /* التعديل الجديد: التنسيق المثالي للشعارات المستطيلة والعريضة */
+    /* ======================================================= */
+    .logo-box { 
+      height: 60px;               /* حددنا ارتفاعاً ثابتاً ومناسباً جداً للهيدر */
+      width: auto;                /* جعلنا العرض تلقائياً ليتسع للشعار كاملاً دون ضغط */
+      display: flex;              
+      align-items: center;        /* موازنة عمودية في المنتصف */
+      flex-shrink: 0;             /* حارس الأمن: يمنع انضغاط الشعار في الشاشات الصغيرة */
     }
+    
     .logo-box img { 
-      width: 100%; 
-      height: 100%; 
-      object-fit: contain;
-      padding: 5px;/
+      height: 100%;               /* تجعل الصورة تأخذ كامل الارتفاع المتاح (60 بكسل) */
+      width: auto;                /* تترك العرض يتمدد طبيعياً ليتناسب مع أبعاد الشعار الحقيقية */
+      object-fit: contain;        /* تضمن الحفاظ على حدة ونقاء الأبعاد دون أي مط */
+    }
+    /* ======================================================= */
     }
     .hero-grid { display: grid; gap: 20px; grid-template-columns: 1fr; }
     @media(min-width: 850px) {
