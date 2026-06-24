@@ -4,10 +4,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>مؤسسة زهرة الأندلس | الرخام والحجر الطبيعي والأعمال الهندسية</title>
   <meta name="description" content="صفحة تعريفية لمؤسسة زهرة الأندلس، متخصصة في الرخام والحجر الطبيعي والأعمال الهندسية، مع لوحة تحكم كاملة لإدارة الفروع والمشاريع وقنوات التواصل.">
-  
-  <!-- 🌐 إضافة وتعديل أيقونة الموقع (Favicon) -->
-  <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?sz=w60&amp;id=16_H7p2rVp4pG-qB9fI0_u5Qn19t-ZA0X">
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
@@ -230,18 +226,6 @@
     .stat-val { font-size: 24px; font-weight: 800; color: #ead0a8; display: block; }
     .stat-lbl { font-size: 12px; color: rgba(255,255,255,0.7); }
 
-    /* 🎨 تنسيقات إضافية محسنة لقسم من نحن الجديد والمقسم كشبكة */
-    .about-grid { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center; margin-top: 15px; }
-    @media(min-width: 850px) { .about-grid { grid-template-columns: 1.2fr 0.8fr; } }
-    .about-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
-    .about-feat-card { padding: 16px; background: rgba(0,0,0,0.02); border: 1px solid var(--line); border-radius: var(--radius-sm); display: flex; gap: 12px; align-items: flex-start; }
-    body[data-theme="dark"] .about-feat-card { background: rgba(255,255,255,0.02); }
-    .about-feat-icon { font-size: 20px; color: var(--primary); margin-top: 4px; }
-    .about-feat-title { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
-    .about-feat-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
-    .about-image-box { width: 100%; height: 100%; min-height: 280px; max-height: 380px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow-soft); }
-    .about-image-box img { width: 100%; height: 100%; object-fit: cover; }
-
     .data-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; margin-top: 20px; }
     .item-card { background: var(--surface-strong); border: 1px solid var(--line); border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow-soft); }
     .item-media { height: 190px; background: #eae5db; overflow: hidden; position: relative; }
@@ -254,6 +238,14 @@
     .branch-inner { display: grid; gap: 12px; margin-top: 10px; padding: 14px; background: rgba(0,0,0,0.02); border-radius: var(--radius-sm); border: 1px solid var(--line); }
     .manager-tag { font-size: 13px; font-weight: 700; color: var(--secondary); display: flex; align-items: center; gap: 6px; }
     
+    /* تنسيقات أزرار الاتصال المصغرة داخل بطاقات الفروع */
+    .branch-communication-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13px; }
+    .branch-action-icons { display: flex; gap: 6px; align-items: center; }
+    .mini-comm-btn { width: 28px; height: 28px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; text-decoration: none; transition: var(--transition); }
+    .mini-comm-btn:hover { transform: scale(1.1); }
+    .mini-comm-btn.phone-btn { background: var(--secondary); }
+    .mini-comm-btn.whatsapp-btn { background: #25D366; }
+
     .banks-container-box { display: flex; flex-direction: column; gap: 8px; width: 100%; }
     .bank-select-wrapper { display: flex; flex-direction: column; gap: 5px; }
     .bank-select-wrapper label { font-size: 11px; font-weight: bold; color: var(--muted); }
@@ -331,37 +323,10 @@
     </section>
 
     <section class="section" id="about-sec">
-      <div class="about-grid">
-        <div>
-          <div class="section-header" style="margin-bottom: 16px;">
-            <span class="eyebrow"><i class="fa-solid fa-address-card"></i> هويتنا الفنية</span>
-            <h2 class="section-title">التزام راسخ ببناء واجهات مستدامة وعالية الجودة</h2>
-            <p class="section-desc" style="margin-top: 8px;">نهتم في زهرة الأندلس بالبناء على أساس هندسي سليم، ونوفر لعملائنا الفهم الوافي للمواد قبل الشراء لضمان سلامة واستدامة الديكورات الخارجية والداخلية.</p>
-          </div>
-          
-          <div class="about-features">
-            <div class="about-feat-card">
-              <i class="fa-solid fa-compass-drafting about-feat-icon"></i>
-              <div>
-                <h4 class="about-feat-title">الأمانة الهندسية</h4>
-                <p class="about-feat-desc">دراسة دقيقة للمقاسات والأوزان لضمان أعلى معايير السلامة الإنشائية للمباني.</p>
-              </div>
-            </div>
-            <div class="about-feat-card">
-              <i class="fa-solid fa-gem about-feat-icon"></i>
-              <div>
-                <h4 class="about-feat-title">خامات منتقاة</h4>
-                <p class="about-feat-desc">نوفر أجود أنواع الرخام والحجر الطبيعي التي تتحمل العوامل الجوية المختلفة كفاءة.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div>
-          <div class="about-image-box">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="أعمال الرخام الهندسية بمؤسسة زهرة الأندلس">
-          </div>
-        </div>
+      <div class="section-header">
+        <span class="eyebrow"><i class="fa-solid fa-address-card"></i> هويتنا الفنية</span>
+        <h2 class="section-title">التزام راسخ ببناء واجهات مستدامة وعالية الجودة</h2>
+        <p class="section-desc">نهتم في زهرة الأندلس بالبناء على أساس هندسي سليم، ونوفر لعملائنا الفهم الوافي للمواد قبل الشراء لضمان سلامة واستدامة الديكورات الخارجية والداخلية.</p>
       </div>
     </section>
 
@@ -389,7 +354,16 @@
         <h2 class="section-title">مشاريع هندسية نفخر بتشغيلها وإدارتها</h2>
         <p class="section-desc">شاهد تفاصيل التنفيذ المتناسق في واجهات القصور والمباني التجارية.</p>
       </div>
-      <div class="data-grid" id="view-projects-grid"></div>
+      <div class="data-grid" id="view-projects-grid">
+        <div class="item-card">
+          <div class="item-media"><img src="https://via.placeholder.com/400x190.png?text=No+Image" alt="مشروع جديد"></div>
+          <div class="item-body">
+            <span class="item-meta">مشروع هندسي</span>
+            <h3 class="item-title">مشروع جديد</h3>
+            <p class="item-desc"></p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="section" id="branches-sec">
@@ -407,7 +381,15 @@
               </h3>
               <div class="branch-inner">
                 <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: محمد عبد الوهاب</div>
-                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">0507524671</span></div>
+                <div class="branch-communication-row">
+                  <div><i class="fa-solid fa-phone"></i> جوال: <span style="direction:ltr; display:inline-block; font-weight:600;">0507524671</span></div>
+                  
+                    <div class="branch-action-icons">
+                      <a href="tel:0507524671" class="mini-comm-btn phone-btn" title="اتصال هاتفي مباشر"><i class="fa-solid fa-phone"></i></a>
+                      <a href="https://api.whatsapp.com/send?phone=966507524671&amp;text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%88%D8%B1%D8%AD%D9%85%D8%A9%20%D8%A7%D9%84%D9%84%D9%87%20%D9%88%D8%A8%D8%B1%D9%83%D8%A7%D8%AA%D9%87%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D9%85%D9%86%20%D9%85%D8%A4%D8%B3%D8%B3%D8%A9%20%D8%B2%D9%87%D8%B1%D8%A9%20%D8%A7%D9%84%D8%A3%D9%86%D8%AF%D9%84%D8%B3." target="_blank" class="mini-comm-btn whatsapp-btn" title="تواصل عبر الواتساب"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                  
+                </div>
               </div>
               <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
                 <div class="banks-container-box">
@@ -437,7 +419,15 @@
               </h3>
               <div class="branch-inner">
                 <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: محمد</div>
-                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">0555</span></div>
+                <div class="branch-communication-row">
+                  <div><i class="fa-solid fa-phone"></i> جوال: <span style="direction:ltr; display:inline-block; font-weight:600;">0555</span></div>
+                  
+                    <div class="branch-action-icons">
+                      <a href="tel:0555" class="mini-comm-btn phone-btn" title="اتصال هاتفي مباشر"><i class="fa-solid fa-phone"></i></a>
+                      <a href="https://api.whatsapp.com/send?phone=966555&amp;text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%88%D8%B1%D8%AD%D9%85%D8%A9%20%D8%A7%D9%84%D9%84%D9%87%20%D9%88%D8%A8%D8%B1%D9%83%D8%A7%D8%AA%D9%87%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D9%85%D9%86%20%D9%85%D8%A4%D8%B3%D8%B3%D8%A9%20%D8%B2%D9%87%D8%B1%D8%A9%20%D8%A7%D9%84%D8%A3%D9%86%D8%AF%D9%84%D8%B3." target="_blank" class="mini-comm-btn whatsapp-btn" title="تواصل عبر الواتساب"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                  
+                </div>
               </div>
               <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
                 <div class="banks-container-box">
@@ -467,7 +457,15 @@
               </h3>
               <div class="branch-inner">
                 <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: محمد</div>
-                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">0545858177</span></div>
+                <div class="branch-communication-row">
+                  <div><i class="fa-solid fa-phone"></i> جوال: <span style="direction:ltr; display:inline-block; font-weight:600;">0545858177</span></div>
+                  
+                    <div class="branch-action-icons">
+                      <a href="tel:0545858177" class="mini-comm-btn phone-btn" title="اتصال هاتفي مباشر"><i class="fa-solid fa-phone"></i></a>
+                      <a href="https://api.whatsapp.com/send?phone=966545858177&amp;text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%88%D8%B1%D8%AD%D9%85%D8%A9%20%D8%A7%D9%84%D9%84%D9%87%20%D9%88%D8%A8%D8%B1%D9%83%D8%A7%D8%AA%D9%87%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D9%85%D9%86%20%D9%85%D8%A4%D8%B3%D8%B3%D8%A9%20%D8%B2%D9%87%D8%B1%D8%A9%20%D8%A7%D9%84%D8%A3%D9%86%D8%AF%D9%84%D8%B3." target="_blank" class="mini-comm-btn whatsapp-btn" title="تواصل عبر الواتساب"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                  
+                </div>
               </div>
               <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
                 <div class="banks-container-box">
@@ -497,7 +495,15 @@
               </h3>
               <div class="branch-inner">
                 <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: محمد</div>
-                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">0560822558</span></div>
+                <div class="branch-communication-row">
+                  <div><i class="fa-solid fa-phone"></i> جوال: <span style="direction:ltr; display:inline-block; font-weight:600;">0560822558</span></div>
+                  
+                    <div class="branch-action-icons">
+                      <a href="tel:0560822558" class="mini-comm-btn phone-btn" title="اتصال هاتفي مباشر"><i class="fa-solid fa-phone"></i></a>
+                      <a href="https://api.whatsapp.com/send?phone=966560822558&amp;text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%88%D8%B1%D8%AD%D9%85%D8%A9%20%D8%A7%D9%84%D9%84%D9%87%20%D9%88%D8%A8%D8%B1%D9%83%D8%A7%D8%AA%D9%87%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D9%85%D9%86%20%D9%85%D8%A4%D8%B3%D8%B3%D8%A9%20%D8%B2%D9%87%D8%B1%D8%A9%20%D8%A7%D9%84%D8%A3%D9%86%D8%AF%D9%84%D8%B3." target="_blank" class="mini-comm-btn whatsapp-btn" title="تواصل عبر الواتساب"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                  
+                </div>
               </div>
               <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
                 <div class="banks-container-box">
@@ -527,7 +533,15 @@
               </h3>
               <div class="branch-inner">
                 <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: محمد</div>
-                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">0557278262</span></div>
+                <div class="branch-communication-row">
+                  <div><i class="fa-solid fa-phone"></i> جوال: <span style="direction:ltr; display:inline-block; font-weight:600;">0557278262</span></div>
+                  
+                    <div class="branch-action-icons">
+                      <a href="tel:0557278262" class="mini-comm-btn phone-btn" title="اتصال هاتفي مباشر"><i class="fa-solid fa-phone"></i></a>
+                      <a href="https://api.whatsapp.com/send?phone=966557278262&amp;text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%88%D8%B1%D8%AD%D9%85%D8%A9%20%D8%A7%D9%84%D9%84%D9%87%20%D9%88%D8%A8%D8%B1%D9%83%D8%A7%D8%AA%D9%87%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D9%85%D9%86%20%D9%85%D8%A4%D8%B3%D8%B3%D8%A9%20%D8%B2%D9%87%D8%B1%D8%A9%20%D8%A7%D9%84%D8%A3%D9%86%D8%AF%D9%84%D8%B3." target="_blank" class="mini-comm-btn whatsapp-btn" title="تواصل عبر الواتساب"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                  
+                </div>
               </div>
               <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
                 <div class="banks-container-box">
@@ -618,8 +632,8 @@
         linkFacebook: "",
         linkYoutube: "",
         stats: [
-          { val: "+18", lbl: "سنوات خبرة في التوريد والتنفيذ" },
-          { val: "+160", lbl: "مشروعاً ناجحاً" },
+          { val: "+12", lbl: "سنوات خبرة في التوريد والتنفيذ" },
+          { val: "+150", lbl: "مشروعاً ناجحاً" },
           { val: "24/7", lbl: "متابعة واستجابة" },
           { val: "100%", lbl: "تركيز على الجودة" }
         ]
@@ -743,6 +757,11 @@
           initialHolder = b.banks[0].holderName ? ` | الاسم: ${b.banks[0].holderName}` : '';
         }
 
+        // تنظيف الرقم من أي مسافات لاستخدامه في الروابط المباشرة
+        const cleanPhone = b.phone ? b.phone.trim().replace(/\s+/g, '') : '';
+        // تهيئة رقم الواتساب ليتناسب مع الصيغة الدولية المفضلة
+        const whatsappPhone = cleanPhone.startsWith('05') ? `966${cleanPhone.substring(1)}` : cleanPhone;
+
         return `
           <div class="item-card">
             <div class="item-body">
@@ -752,7 +771,15 @@
               </h3>
               <div class="branch-inner">
                 <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: ${b.manager || 'غير محدد'}</div>
-                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">${b.phone || '-'}</span></div>
+                <div class="branch-communication-row">
+                  <div><i class="fa-solid fa-phone"></i> جوال: <span style="direction:ltr; display:inline-block; font-weight:600;">${b.phone || '-'}</span></div>
+                  ${cleanPhone ? `
+                    <div class="branch-action-icons">
+                      <a href="tel:${cleanPhone}" class="mini-comm-btn phone-btn" title="اتصال هاتفي مباشر"><i class="fa-solid fa-phone"></i></a>
+                      <a href="https://api.whatsapp.com/send?phone=${whatsappPhone}&text=${encodeURIComponent('السلام عليكم ورحمة الله وبركاته، أود الاستفسار من مؤسسة زهرة الأندلس.')}" target="_blank" class="mini-comm-btn whatsapp-btn" title="تواصل عبر الواتساب"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                  ` : ''}
+                </div>
               </div>
               <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
                 <div class="banks-container-box">
@@ -840,14 +867,6 @@
       document.getElementById('inp-linkFacebook').value = cfg.linkFacebook || '';
       document.getElementById('inp-linkYoutube').value = cfg.linkYoutube || '';
 
-      // 📥 ملء حقول الإحصائيات الأربعة في لوحة الإدارة عند فتحها
-      if (cfg.stats && cfg.stats.length >= 4) {
-        for (let i = 0; i < 4; i++) {
-          document.getElementById(`inp-statVal${i}`).value = cfg.stats[i].val || '';
-          document.getElementById(`inp-statLbl${i}`).value = cfg.stats[i].lbl || '';
-        }
-      }
-
       refreshAdminLists();
     }
 
@@ -868,15 +887,6 @@
       ZahratAndalusData.config.linkSnapchat = document.getElementById('inp-linkSnapchat').value;
       ZahratAndalusData.config.linkFacebook = document.getElementById('inp-linkFacebook').value;
       ZahratAndalusData.config.linkYoutube = document.getElementById('inp-linkYoutube').value;
-
-      // 📥 حفظ ومزامنة قيم الإحصائيات الأربعة الجديدة المدخلة من لوحة الإدارة
-      if (!ZahratAndalusData.config.stats) ZahratAndalusData.config.stats = [{}, {}, {}, {}];
-      for (let i = 0; i < 4; i++) {
-        ZahratAndalusData.config.stats[i] = {
-          val: document.getElementById(`inp-statVal${i}`).value,
-          lbl: document.getElementById(`inp-statLbl${i}`).value
-        };
-      }
 
       const productCards = document.querySelectorAll('#admin-products-list .cms-card-item');
       productCards.forEach((card, i) => {
