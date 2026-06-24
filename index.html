@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مؤسسة زهرة الأندلس | الرخام والحجر الطبيعي والأعمال الهندسية</title>
+  <meta name="description" content="صفحة تعريفية لمؤسسة زهرة الأندلس، متخصصة في الرخام والحجر الطبيعي والأعمال الهندسية، مع لوحة تحكم كاملة لإدارة الفروع والمشاريع وقنوات التواصل.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --bg: #f7f4ee;
+      --surface: rgba(255, 255, 255, 0.92);
+      --surface-strong: #ffffff;
+      --surface-dark: #152033;
+      --text: #162033;
+      --muted: #6d7482;
+      --line: rgba(21, 32, 51, 0.12);
+      --primary: #8d6a3b;
+      --primary-dark: #6f5028;
+      --primary-soft: rgba(141, 106, 59, 0.12);
+      --secondary: #21324f;
+      --success: #1f9d68;
+      --danger: #c53d3d;
+      --warning: #e29513;
+      --shadow: 0 18px 42px rgba(14, 23, 39, 0.10);
+      --shadow-soft: 0 10px 25px rgba(14, 23, 39, 0.08);
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+      --transition: 0.28s ease;
+    }
+
+    body[data-theme="dark"] {
+      --bg: #0e1523;
+      --surface: rgba(17, 25, 40, 0.68);
+      --surface-strong: #141f31;
+      --surface-dark: #0b1322;
+      --text: #f3f5f8;
+      --muted: #b4bdca;
+      --line: rgba(255, 255, 255, 0.10);
+      --primary-soft: rgba(205, 162, 89, 0.14);
+      --shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
+      --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.26);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Cairo", sans-serif; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: radial-gradient(circle at top, rgba(205, 162, 89, 0.12), transparent 34%), var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      min-height: 100vh;
+      transition: background-color var(--transition), color var(--transition);
+      padding-bottom: 60px;
+    }
+
+    .container { width: min(100% - 24px, 1180px); margin: 0 auto; }
+
+    .section {
+      position: relative;
+      margin-bottom: 24px;
+      padding: 32px 24px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      backdrop-filter: blur(18px);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .section-header { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    body[data-theme="dark"] .eyebrow { color: #e8d5b1; }
+
+    .section-title { font-size: clamp(1.45rem, 4vw, 2.2rem); line-height: 1.35; font-weight: 800; }
+    .section-desc { color: var(--muted); }
+
+    .admin-bar {
+      background: #0b1322;
+      color: #fff;
+      padding: 12px 18px;
+      position: sticky;
+      top: 0;
+      z-index: 2000;
+      border-bottom: 2px solid var(--primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .admin-logo-title { display: flex; align-items: center; gap: 10px; font-weight: 800; color: #f3d8a7; }
+    .admin-btns { display: flex; gap: 8px; }
+
+    .admin-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 26, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .admin-modal.active { display: flex; }
+    .modal-content {
+      background: var(--surface-strong);
+      color: var(--text);
+      width: 100%;
+      max-width: 850px;
+      max-height: 85vh;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .modal-header { padding: 18px; background: var(--secondary); color: #fff; display: flex; justify-content: space-between; align-items: center; }
+    .modal-tabs { display: flex; background: rgba(0,0,0,0.05); border-bottom: 1px solid var(--line); overflow-x: auto; }
+    .modal-tab { padding: 12px 18px; cursor: pointer; border-bottom: 3px solid transparent; font-weight: 700; font-size: 14px; white-space: nowrap; transition: all var(--transition); }
+    .modal-tab.active { border-color: var(--primary); color: var(--primary); background: rgba(141,106,59,0.05); }
+    .modal-body { padding: 20px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 16px; }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-weight: 700; font-size: 13px; color: var(--text); }
+    .form-control {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      outline: none;
+      transition: border var(--transition);
+    }
+    .form-control:focus { border-color: var(--primary); }
+    .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    
+    .social-grid-layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media(max-width: 768px) { .social-grid-layout { grid-template-columns: 1fr; } }
+    .social-grid-full-width { grid-column: 1 / -1; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 14px;
+      border: 0;
+      cursor: pointer;
+      transition: transform var(--transition), opacity var(--transition);
+      text-decoration: none;
+    }
+    .btn:hover { transform: translateY(-1px); opacity: 0.9; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-secondary { background: var(--secondary); color: #fff; }
+    .btn-success { background: var(--success); color: #fff; }
+    .btn-danger { background: var(--danger); color: #fff; }
+    .btn-warning { background: var(--warning); color: #fff; }
+
+    .cms-card-item {
+      padding: 16px;
+      background: rgba(0,0,0,0.02);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    body[data-theme="dark"] .cms-card-item { background: rgba(255,255,255,0.02); }
+    .cms-delete-btn { position: absolute; left: 16px; top: 16px; background: transparent; border: 0; color: var(--danger); cursor: pointer; font-size: 16px; z-index: 10; }
+
+    .hero { padding: 30px 0; }
+    .hero-shell {
+      background: linear-gradient(145deg, rgba(21,32,51,0.95), rgba(33,50,79,0.90)), url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1200&q=80') center/cover;
+      color: #fff; padding: 32px; border-radius: var(--radius-lg); display: grid; gap: 24px;
+    }
+    .brand-area { display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 14px; }
+    .logo-box { width: 68px; height: 68px; border-radius: 50%; overflow: hidden; border: 3px solid rgba(255,255,255,0.25); background: #fff; }
+    .logo-box img { width: 100%; height: 100%; object-fit: cover; }
+    
+    .hero-grid { display: grid; gap: 20px; grid-template-columns: 1fr; }
+    @media(min-width: 850px) {
+      .hero-grid { grid-template-columns: 1.2fr 0.8fr; }
+    }
+    .hero-copy h1 { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 800; line-height: 1.3; margin-bottom: 12px; }
+    .hero-copy p { color: rgba(255,255,255,0.8); font-size: 15px; margin-bottom: 20px; }
+    
+    .social-links-wrap { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
+    .social-btn {
+      width: 38px; height: 38px; border-radius: 50%; display: inline-flex; align-items: center;
+      justify-content: center; color: #fff; font-size: 16px; transition: var(--transition); text-decoration: none;
+      background: rgba(255,255,255,0.15);
+    }
+    .social-btn:hover { transform: scale(1.1); background: var(--primary); }
+    .social-btn.wa { background: #25D366; }
+    .social-btn.tw { background: #1DA1F2; }
+    .social-btn.inst { background: #E1306C; }
+    .social-btn.snap { background: #FFFC00; color: #000; }
+    .social-btn.tt { background: #000000; }
+    .social-btn.fb { background: #1877F2; }
+    .social-btn.yt { background: #FF0000; }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .stat-card { background: rgba(255,255,255,0.08); padding: 14px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.05); }
+    .stat-val { font-size: 24px; font-weight: 800; color: #ead0a8; display: block; }
+    .stat-lbl { font-size: 12px; color: rgba(255,255,255,0.7); }
+
+    /* 🎨 تنسيقات إضافية محسنة لقسم من نحن الجديد والمقسم كشبكة */
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center; margin-top: 15px; }
+    @media(min-width: 850px) { .about-grid { grid-template-columns: 1.2fr 0.8fr; } }
+    .about-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
+    .about-feat-card { padding: 16px; background: rgba(0,0,0,0.02); border: 1px solid var(--line); border-radius: var(--radius-sm); display: flex; gap: 12px; align-items: flex-start; }
+    body[data-theme="dark"] .about-feat-card { background: rgba(255,255,255,0.02); }
+    .about-feat-icon { font-size: 20px; color: var(--primary); margin-top: 4px; }
+    .about-feat-title { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
+    .about-feat-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .about-image-box { width: 100%; height: 100%; min-height: 280px; max-height: 380px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow-soft); }
+    .about-image-box img { width: 100%; height: 100%; object-fit: cover; }
+
+    .data-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; margin-top: 20px; }
+    .item-card { background: var(--surface-strong); border: 1px solid var(--line); border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow-soft); }
+    .item-media { height: 190px; background: #eae5db; overflow: hidden; position: relative; }
+    .item-media img { width: 100%; height: 100%; object-fit: cover; }
+    .item-body { padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .item-title { font-size: 16px; font-weight: 800; }
+    .item-desc { font-size: 13px; color: var(--muted); }
+    .item-meta { display: inline-block; padding: 3px 8px; background: var(--primary-soft); color: var(--primary); border-radius: 6px; font-size: 11px; font-weight: 700; width: fit-content; }
+    
+    .branch-inner { display: grid; gap: 12px; margin-top: 10px; padding: 14px; background: rgba(0,0,0,0.02); border-radius: var(--radius-sm); border: 1px solid var(--line); }
+    .manager-tag { font-size: 13px; font-weight: 700; color: var(--secondary); display: flex; align-items: center; gap: 6px; }
+    
+    .banks-container-box { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+    .bank-select-wrapper { display: flex; flex-direction: column; gap: 5px; }
+    .bank-select-wrapper label { font-size: 11px; font-weight: bold; color: var(--muted); }
+    .iban-copy-row { display: flex; gap: 6px; align-items: center; margin-top: 4px; }
+    .iban-display-field { font-family: monospace; font-size: 12.5px; background: var(--surface); padding: 9px 12px; border-radius: 8px; border: 1px dashed var(--line); text-align: left; direction: ltr; flex: 1; overflow-x: auto; white-space: nowrap; font-weight: bold; color: var(--text); }
+    .btn-copy-action { min-height: 36px; padding: 0 12px; border-radius: 8px; font-size: 12px; background: var(--secondary); color: #fff; border: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; transition: var(--transition); }
+    .btn-copy-action:hover { background: var(--primary); }
+
+    .cms-sub-banks-list { display: flex; flex-direction: column; gap: 10px; padding: 12px; background: rgba(0,0,0,0.02); border-radius: var(--radius-sm); border: 1px solid var(--line); margin-top: 8px; }
+    .cms-bank-row-item { display: grid; grid-template-columns: 1fr 1fr 1.5fr auto; gap: 8px; align-items: end; padding: 8px; background: var(--surface-strong); border-radius: 8px; border: 1px solid var(--line); }
+
+    .quote-form-container { max-width: 650px; margin: 0 auto; }
+    .theme-fab { position: fixed; left: 16px; bottom: 16px; width: 44px; height: 44px; border-radius: 50%; background: var(--secondary); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; border: 0; box-shadow: var(--shadow); }
+
+    .login-overlay { position: fixed; inset: 0; background: rgba(11, 19, 34, 0.92); z-index: 3000; display: none; align-items: center; justify-content: center; padding: 16px; }
+    .login-overlay.active { display: flex; }
+    .login-card { background: var(--surface-strong); padding: 24px; border-radius: var(--radius-lg); width: 100%; max-width: 380px; box-shadow: var(--shadow); text-align: center; display: flex; flex-direction: column; gap: 16px; }
+
+    .sheet-nav { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .sheet-nav a { padding: 6px 12px; background: var(--primary-soft); color: var(--primary); font-size: 12px; font-weight: 700; border-radius: 6px; text-decoration: none; }
+  </style>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+</head>
+<body data-theme="light">
+
+  
+
+  <button class="theme-fab" onclick="toggleTheme()" title="تبديل المظهر"><i class="fa-solid fa-moon"></i></button>
+
+  
+
+  
+
+  <div class="container" style="padding-top: 10px;">
+    <section class="hero">
+      <div class="hero-shell" id="view-heroBg">
+        <div class="brand-area">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <div class="logo-box"><img id="view-brandLogo" src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1-Nk1Wg2GV6FTtvquELG0tccIKmvnkcjg" alt="الشعار"></div>
+            <div>
+              <h2 id="view-brandName" style="font-weight: 800; font-size: clamp(1.2rem, 3.5vw, 1.6rem);">مؤسسة زهرة الأندلس للرخام و السيراميك</h2>
+              <p id="view-brandSubtitle" style="font-size: 13px; color: rgba(255,255,255,0.75);">قدم في مؤسسة زهرة الأندلس حلولاً متكاملة في توريد وتركيب الرخام والحجر الطبيعي والأعمال الهندسية، مع عناية دقيقة بالتفاصيل، واختيار واعٍ للمواد، وتنفيذ يوازن بين الجمال والمتانة في المشاريع السكنية والتجارية.</p>
+            </div>
+          </div>
+          <div class="sheet-nav">
+            <a href="#about-sec">من نحن</a>
+            <a href="#products-sec">خاماتنا</a>
+            <a href="#projects-sec">مشاريعنا</a>
+            <a href="#branches-sec">الفروع والملفات</a>
+          </div>
+        </div>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow"><i class="fa-solid fa-shield-halved"></i> جودة المواد · احترافية هندسية كاملة</span>
+            <h1 id="view-heroTitle" style="margin-top: 12px;">شريك يعتمد عليه في الرخام والحجر الطبيعي والأعمال الهندسية</h1>
+            <p id="view-heroDesc">بني أعمالنا على فهم احتياج المشروع منذ البداية، ثم توفير و اختيار الخامات المناسبة، ثم التنفيذ بعناية تضمن جودة المظهر وطول العمر التشغيلي. نعمل بروح احترافية تجمع بين الخبرة الفنية، والالتزام بالمواعيد، والتنسيق السلس مع متطلبات العملاء والمواقع المختلفة.</p>
+            <div class="social-links-wrap" id="view-socialContainer"><a href="https://wa.me/966557278262" target="_blank" class="social-btn wa" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a><a href="https://x.com/zahrtalandalus1" target="_blank" class="social-btn tw" title="تويتر X"><i class="fa-brands fa-x-twitter"></i></a><a href="https://www.instagram.com/zahrtalandalus" target="_blank" class="social-btn inst" title="إنستغرام"><i class="fa-brands fa-instagram"></i></a><a href="https://www.tiktok.com/@zahrtalandalus1" target="_blank" class="social-btn tt" title="تيك توك"><i class="fa-brands fa-tiktok"></i></a><a href="https://www.snapchat.com/add/zahrtalandalus" target="_blank" class="social-btn snap" title="سناب شات"><i class="fa-brands fa-snapchat"></i></a><a href="https://www.facebook.com/zahrt.alandalus.2025" target="_blank" class="social-btn fb" title="فيسبوك"><i class="fa-brands fa-facebook"></i></a><a href="https://www.youtube.com/@zahrtalandalus1-b5l" target="_blank" class="social-btn yt" title="يوتيوب"><i class="fa-brands fa-youtube"></i></a></div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <a href="#quote-sec" class="btn btn-primary"><i class="fa-solid fa-file-invoice-dollar"></i> اطلب تسعيرة الآن</a>
+            </div>
+          </div>
+          <div class="stats-grid" id="view-stats-container">
+          <div class="stat-card"><span class="stat-val">+18</span><span class="stat-lbl">سنوات خبرة في التوريد والتنفيذ</span></div>
+        
+          <div class="stat-card"><span class="stat-val">+150</span><span class="stat-lbl">مشروعاً ناجحاً</span></div>
+        
+          <div class="stat-card"><span class="stat-val">24/7</span><span class="stat-lbl">متابعة واستجابة</span></div>
+        
+          <div class="stat-card"><span class="stat-val">100%</span><span class="stat-lbl">تركيز على الجودة</span></div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about-sec">
+      <div class="about-grid">
+        <div>
+          <div class="section-header" style="margin-bottom: 16px;">
+            <span class="eyebrow"><i class="fa-solid fa-address-card"></i> هويتنا الفنية</span>
+            <h2 class="section-title">التزام راسخ ببناء واجهات مستدامة وعالية الجودة</h2>
+            <p class="section-desc" style="margin-top: 8px;">نهتم في زهرة الأندلس بالبناء على أساس هندسي سليم، ونوفر لعملائنا الفهم الوافي للمواد قبل الشراء لضمان سلامة واستدامة الديكورات الخارجية والداخلية.</p>
+          </div>
+          
+          <div class="about-features">
+            <div class="about-feat-card">
+              <i class="fa-solid fa-compass-drafting about-feat-icon"></i>
+              <div>
+                <h4 class="about-feat-title">الأمانة الهندسية</h4>
+                <p class="about-feat-desc">دراسة دقيقة للمقاسات والأوزان لضمان أعلى معايير السلامة الإنشائية للمباني.</p>
+              </div>
+            </div>
+            <div class="about-feat-card">
+              <i class="fa-solid fa-gem about-feat-icon"></i>
+              <div>
+                <h4 class="about-feat-title">خامات منتقاة</h4>
+                <p class="about-feat-desc">نوفر أجود أنواع الرخام والحجر الطبيعي التي تتحمل العوامل الجوية المختلفة كفاءة.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <div class="about-image-box">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="أعمال الرخام الهندسية بمؤسسة زهرة الأندلس">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="products-sec">
+      <div class="section-header">
+        <span class="eyebrow"><i class="fa-solid fa-cubes"></i> كتالوج الخامات</span>
+        <h2 class="section-title">تشكيلة واسعة من الرخام والحجر الطبيعي الممتاز</h2>
+        <p class="section-desc">مستخرجة ومصنعة بأعلى درجات المعايرة والمقاييس المعمارية.</p>
+      </div>
+      <div class="data-grid" id="view-products-grid">
+        <div class="item-card">
+          <div class="item-media"><img src="https://via.placeholder.com/400x190.png?text=No+Image" alt="خامة جديدة"></div>
+          <div class="item-body">
+            <span class="item-meta">خامة ممتازة</span>
+            <h3 class="item-title">خامة جديدة</h3>
+            <p class="item-desc"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects-sec">
+      <div class="section-header">
+        <span class="eyebrow"><i class="fa-solid fa-compass-drafting"></i> معرض الإنجازات</span>
+        <h2 class="section-title">مشاريع هندسية نفخر بتشغيلها وإدارتها</h2>
+        <p class="section-desc">شاهد تفاصيل التنفيذ المتناسق في واجهات القصور والمباني التجارية.</p>
+      </div>
+      <div class="data-grid" id="view-projects-grid"></div>
+    </section>
+
+    <section class="section" id="branches-sec">
+      <div class="section-header">
+        <span class="eyebrow"><i class="fa-solid fa-network-wired"></i> الانتشار الميداني والشؤون المالية</span>
+        <h2 class="section-title">الفروع ومواقعها على قوقل ماب الحية</h2>
+        <p class="section-desc">تواصل مباشرة مع الفرع المختص واضغط على زر الموقع الجغرافي للوصول الميداني إلينا بسهولة.</p>
+      </div>
+      <div class="data-grid" id="view-branches-grid">
+          <div class="item-card">
+            <div class="item-body">
+              <h3 class="item-title" style="color:var(--primary); display:flex; justify-content:space-between; align-items:center;">
+                <span>المستودع الرئيسي</span>
+                <a href="https://maps.app.goo.gl/ozNVReUmSgpAr41y7" target="_blank" class="btn btn-primary" style="min-height:30px; padding:0 10px; font-size:11px; border-radius:6px;"><i class="fa-solid fa-map-location-dot"></i> موقع الفرع</a>
+              </h3>
+              <div class="branch-inner">
+                <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: محمد عبد الوهاب</div>
+                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">0507524671</span></div>
+              </div>
+              <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
+                <div class="banks-container-box">
+                  
+                    <div class="bank-select-wrapper">
+                      <label><i class="fa-solid fa-building-columns"></i> اختر البنك للتحويل:</label>
+                      <select class="form-control" style="padding: 6px 10px; font-size:13px;" onchange="onBranchBankChange(this, 0)">
+                        <option value="0">مصرف الراجحي</option><option value="1">مصرف الاهلي</option>
+                      </select>
+                    </div>
+                  
+                  <div class="iban-copy-row">
+                    <div class="iban-display-field" id="iban-display-b0">SA308000010006080567328</div>
+                    <button class="btn-copy-action" onclick="copyIbanText('iban-display-b0')" title="نسخ الآيبان"><i class="fa-solid fa-copy"></i> نسخ</button>
+                  </div>
+                  <div style="font-size:11px; color:var(--muted); margin-top:2px;" id="holder-display-b0"> | الاسم: مؤسسة زهرة الأندلس</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="item-card">
+            <div class="item-body">
+              <h3 class="item-title" style="color:var(--primary); display:flex; justify-content:space-between; align-items:center;">
+                <span>فرع رقم 2 (الهدى سابقا)</span>
+                <a href="https://maps.app.goo.gl/EZFFMQXqJ6THAaZC8" target="_blank" class="btn btn-primary" style="min-height:30px; padding:0 10px; font-size:11px; border-radius:6px;"><i class="fa-solid fa-map-location-dot"></i> موقع الفرع</a>
+              </h3>
+              <div class="branch-inner">
+                <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: محمد</div>
+                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">-</span></div>
+              </div>
+              <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
+                <div class="banks-container-box">
+                  
+                    <div class="bank-select-wrapper">
+                      <label><i class="fa-solid fa-building-columns"></i> اختر البنك للتحويل:</label>
+                      <select class="form-control" style="padding: 6px 10px; font-size:13px;" onchange="onBranchBankChange(this, 1)">
+                        <option value="0">مصرف الاهلي</option>
+                      </select>
+                    </div>
+                  
+                  <div class="iban-copy-row">
+                    <div class="iban-display-field" id="iban-display-b1">SA5710000001400034710905</div>
+                    <button class="btn-copy-action" onclick="copyIbanText('iban-display-b1')" title="نسخ الآيبان"><i class="fa-solid fa-copy"></i> نسخ</button>
+                  </div>
+                  <div style="font-size:11px; color:var(--muted); margin-top:2px;" id="holder-display-b1"> | الاسم: مؤسسة زهرة الأندلس</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="item-card">
+            <div class="item-body">
+              <h3 class="item-title" style="color:var(--primary); display:flex; justify-content:space-between; align-items:center;">
+                <span>الفرع ( الرئيسي )</span>
+                <a href="https://maps.app.goo.gl/ozNVReUmSgpAr41y7" target="_blank" class="btn btn-primary" style="min-height:30px; padding:0 10px; font-size:11px; border-radius:6px;"><i class="fa-solid fa-map-location-dot"></i> موقع الفرع</a>
+              </h3>
+              <div class="branch-inner">
+                <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: محمد</div>
+                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">0545858177</span></div>
+              </div>
+              <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
+                <div class="banks-container-box">
+                  
+                    <div class="bank-select-wrapper">
+                      <label><i class="fa-solid fa-building-columns"></i> اختر البنك للتحويل:</label>
+                      <select class="form-control" style="padding: 6px 10px; font-size:13px;" onchange="onBranchBankChange(this, 2)">
+                        <option value="0">مصرف الاهلي</option><option value="1">مصرف الراجحي</option>
+                      </select>
+                    </div>
+                  
+                  <div class="iban-copy-row">
+                    <div class="iban-display-field" id="iban-display-b2">SA681000000570000129507</div>
+                    <button class="btn-copy-action" onclick="copyIbanText('iban-display-b2')" title="نسخ الآيبان"><i class="fa-solid fa-copy"></i> نسخ</button>
+                  </div>
+                  <div style="font-size:11px; color:var(--muted); margin-top:2px;" id="holder-display-b2"> | الاسم: مؤسسة زهرة الأندلس</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="item-card">
+            <div class="item-body">
+              <h3 class="item-title" style="color:var(--primary); display:flex; justify-content:space-between; align-items:center;">
+                <span>فرع رقم 3 (البوابة سابقا)</span>
+                <a href="https://maps.app.goo.gl/CByPQy7vfRsyeR277" target="_blank" class="btn btn-primary" style="min-height:30px; padding:0 10px; font-size:11px; border-radius:6px;"><i class="fa-solid fa-map-location-dot"></i> موقع الفرع</a>
+              </h3>
+              <div class="branch-inner">
+                <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: محمد</div>
+                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">0560822558</span></div>
+              </div>
+              <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
+                <div class="banks-container-box">
+                  
+                    <div class="bank-select-wrapper">
+                      <label><i class="fa-solid fa-building-columns"></i> اختر البنك للتحويل:</label>
+                      <select class="form-control" style="padding: 6px 10px; font-size:13px;" onchange="onBranchBankChange(this, 3)">
+                        <option value="0">مصرف الاهلي</option>
+                      </select>
+                    </div>
+                  
+                  <div class="iban-copy-row">
+                    <div class="iban-display-field" id="iban-display-b3">SA6210000001400034711106</div>
+                    <button class="btn-copy-action" onclick="copyIbanText('iban-display-b3')" title="نسخ الآيبان"><i class="fa-solid fa-copy"></i> نسخ</button>
+                  </div>
+                  <div style="font-size:11px; color:var(--muted); margin-top:2px;" id="holder-display-b3"> | الاسم: مؤسسة زهرة الأندلس</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="item-card">
+            <div class="item-body">
+              <h3 class="item-title" style="color:var(--primary); display:flex; justify-content:space-between; align-items:center;">
+                <span>فرع رقم 4 (فنون سابقا)</span>
+                <a href="https://maps.app.goo.gl/sYwWtg6xJoFRbyXn8" target="_blank" class="btn btn-primary" style="min-height:30px; padding:0 10px; font-size:11px; border-radius:6px;"><i class="fa-solid fa-map-location-dot"></i> موقع الفرع</a>
+              </h3>
+              <div class="branch-inner">
+                <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: محمد</div>
+                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">0557278262</span></div>
+              </div>
+              <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
+                <div class="banks-container-box">
+                  
+                    <div class="bank-select-wrapper">
+                      <label><i class="fa-solid fa-building-columns"></i> اختر البنك للتحويل:</label>
+                      <select class="form-control" style="padding: 6px 10px; font-size:13px;" onchange="onBranchBankChange(this, 4)">
+                        <option value="0">البنك الجديد</option><option value="1">البنك الجديد</option>
+                      </select>
+                    </div>
+                  
+                  <div class="iban-copy-row">
+                    <div class="iban-display-field" id="iban-display-b4">SA000000</div>
+                    <button class="btn-copy-action" onclick="copyIbanText('iban-display-b4')" title="نسخ الآيبان"><i class="fa-solid fa-copy"></i> نسخ</button>
+                  </div>
+                  <div style="font-size:11px; color:var(--muted); margin-top:2px;" id="holder-display-b4"> | الاسم: مؤسسة زهرة الأندلس</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" id="quote-sec" style="border-top: 3px solid var(--primary);">
+      <div class="section-header" style="text-align: center; align-items: center;">
+        <span class="eyebrow"><i class="fa-solid fa-calculator"></i> التسعير السريع المباشر</span>
+        <h2 class="section-title">طلب مقايسة وعرض سعر فوري</h2>
+        <p class="section-desc" style="max-width: 550px;">أدخل تفاصيل مشروعك المعماري وسيتواصل معك فني هندسي مخصص مجهوداً بالدراسة الأولية المقدرة.</p>
+      </div>
+      <div class="quote-form-container">
+        <form id="purchaseQuoteForm" onsubmit="handleQuoteFormSubmit(event)">
+          <div class="form-row" style="margin-bottom: 12px;">
+            <div class="form-group"><label>الاسم الكريم</label><input type="text" id="quote-name" class="form-control" placeholder="مثال: خالد محمد" required=""></div>
+            <div class="form-group"><label>رقم الجوال (الواتساب)</label><input type="tel" id="quote-phone" class="form-control" placeholder="مثال: 05xxxxxxx" required=""></div>
+          </div>
+          <div class="form-row" style="margin-bottom: 12px;">
+            <div class="form-group"><label>المدينة / المنطقة</label><input type="text" id="quote-city" class="form-control" placeholder="مثال: الهفوف، الدمام" required=""></div>
+            <div class="form-group">
+              <label>نوع الخدمة المطلوبة</label>
+              <select id="quote-service" class="form-control" required="">
+                <option value="">اختر الخدمة...</option>
+                <option value="توريد وتركيب رخام داخلي">توريد وتركيب رخام داخلي</option>
+                <option value="واجهات حجر طبيعي خارجي">واجهات حجر طبيعي خارجي</option>
+                <option value="أعمال هندسية ومقاسات مخصصة">أعمال هندسية ومقاسات مخصصة</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success" style="width: 100%; min-height: 48px; font-size: 15px;"><i class="fa-brands fa-whatsapp"></i> إرسال الطلب ومتابعة عرض السعر عبر الواتساب</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <footer class="container" style="text-align: center; padding: 24px 0; font-size: 12px; color: var(--muted); border-top: 1px solid var(--line);">
+    <p style="margin-bottom: 8px;">© 2026 جميع الحقوق محفوظة لـ <span id="footer-brand">مؤسسة زهرة الأندلس للرخام و السيراميك</span></p>
+    <div id="footer-socials" style="display: flex; justify-content: center; gap: 8px;"><a href="https://wa.me/966557278262" target="_blank" class="social-btn wa" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a><a href="https://x.com/zahrtalandalus1" target="_blank" class="social-btn tw" title="تويتر X"><i class="fa-brands fa-x-twitter"></i></a><a href="https://www.instagram.com/zahrtalandalus" target="_blank" class="social-btn inst" title="إنستغرام"><i class="fa-brands fa-instagram"></i></a><a href="https://www.tiktok.com/@zahrtalandalus1" target="_blank" class="social-btn tt" title="تيك توك"><i class="fa-brands fa-tiktok"></i></a><a href="https://www.snapchat.com/add/zahrtalandalus" target="_blank" class="social-btn snap" title="سناب شات"><i class="fa-brands fa-snapchat"></i></a><a href="https://www.facebook.com/zahrt.alandalus.2025" target="_blank" class="social-btn fb" title="فيسبوك"><i class="fa-brands fa-facebook"></i></a><a href="https://www.youtube.com/@zahrtalandalus1-b5l" target="_blank" class="social-btn yt" title="يوتيوب"><i class="fa-brands fa-youtube"></i></a></div>
+  </footer>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCBzUUiHLzZBj8XnSd7cZhaS9VO5TWyiDI",
+      authDomain: "zahratandalus.firebaseapp.com",
+      projectId: "zahratandalus",
+      storageBucket: "zahratandalus.firebasestorage.app",
+      messagingSenderId: "169728784350",
+      appId: "1:169728784350:web:375ad386f0e0403cb58f4f",
+      measurementId: "G-7N9NW33TB3"
+    };
+
+    let db = null;
+    if (typeof firebase !== 'undefined') {
+      firebase.initializeApp(firebaseConfig);
+      db = firebase.firestore();
+    }
+
+    const defaultAndalusData = {
+      config: {
+        brandName: "مؤسسة زهرة الأندلس",
+        brandSubtitle: "للرخام والحجر الطبيعي والأعمال الهندسية",
+        logoUrl: "",
+        heroTitle: "واجهات وتشطيبات حجرية تعكس جودة العمل وتفاصيل التنفيذ الراقية.",
+        heroDesc: "نقدم في مؤسسة زهرة الأندلس حلولاً متكاملة في توريد وتركيب الرخام والحجر الطبيعي والأعمال الهندسية.",
+        linkWhatsapp: "966500000000",
+        linkTwitter: "",
+        linkInstagram: "",
+        linkTiktok: "",
+        linkSnapchat: "",
+        linkFacebook: "",
+        linkYoutube: "",
+        stats: [
+          { val: "+18", lbl: "سنوات خبرة في التوريد والتنفيذ" },
+          { val: "+160", lbl: "مشروعاً ناجحاً" },
+          { val: "24/7", lbl: "متابعة واستجابة" },
+          { val: "100%", lbl: "تركيز على الجودة" }
+        ]
+      },
+      products: [],
+      projects: [],
+      branches: []
+    };
+
+    function convertToDirectDriveLink(url) {
+      if (!url) return "";
+      const trimmedUrl = url.trim();
+      const fileIdRegex = /(?:\/file\/d\/|id=)([a-zA-Z0-9_-]+)/;
+      const match = trimmedUrl.match(fileIdRegex);
+      if (match && match[1]) {
+        return `https://drive.google.com/thumbnail?sz=w1200&id=${match[1]}`;
+      }
+      return trimmedUrl;
+    }
+
+    const StorageEngine = {
+      get: function() {
+        if (!db) return Promise.resolve(defaultAndalusData);
+        return db.collection("mainData").doc("andalus_portal").get().then((doc) => {
+          if (doc.exists) return doc.data();
+          return db.collection("mainData").doc("andalus_portal").set(defaultAndalusData).then(() => defaultAndalusData);
+        }).catch((err) => {
+          console.error("Firestore Get Error:", err);
+          return defaultAndalusData;
+        });
+      },
+      save: function(newData) {
+        if (!db) {
+          alert("خطأ: حزمة Firebase غير متصلة بالشكل الصحيح!");
+          return Promise.resolve(false);
+        }
+        return db.collection("mainData").doc("andalus_portal").set(newData)
+          .then(() => true)
+          .catch((err) => {
+            console.error("Firestore Save Error:", err);
+            alert("فشل الحفظ في السيرفر السحابي: " + err.message);
+            return false;
+          });
+      }
+    };
+
+    let ZahratAndalusData = {};
+    let isAdminAuthenticated = false;
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      ZahratAndalusData = await StorageEngine.get();
+      renderFrontendView();
+      checkAdminSession();
+    });
+
+    function renderFrontendView() {
+      const cfg = ZahratAndalusData.config || defaultAndalusData.config;
+      
+      document.getElementById('view-brandName').innerText = cfg.brandName || '';
+      document.getElementById('view-brandSubtitle').innerText = cfg.brandSubtitle || '';
+      document.getElementById('view-brandLogo').src = cfg.logoUrl || "https://via.placeholder.com/160x160.png?text=ZA";
+      document.getElementById('view-heroTitle').innerText = cfg.heroTitle || '';
+      document.getElementById('view-heroDesc').innerText = cfg.heroDesc || '';
+      document.getElementById('footer-brand').innerText = cfg.brandName || '';
+
+      let socialHTML = '';
+      if(cfg.linkWhatsapp) {
+        let waUrl = cfg.linkWhatsapp.startsWith('http') ? cfg.linkWhatsapp : `https://api.whatsapp.com/send?phone=${cfg.linkWhatsapp}`;
+        socialHTML += `<a href="${waUrl}" target="_blank" class="social-btn wa" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>`;
+      }
+      if(cfg.linkTwitter) socialHTML += `<a href="${cfg.linkTwitter}" target="_blank" class="social-btn tw" title="تويتر X"><i class="fa-brands fa-x-twitter"></i></a>`;
+      if(cfg.linkInstagram) socialHTML += `<a href="${cfg.linkInstagram}" target="_blank" class="social-btn inst" title="إنستغرام"><i class="fa-brands fa-instagram"></i></a>`;
+      if(cfg.linkTiktok) socialHTML += `<a href="${cfg.linkTiktok}" target="_blank" class="social-btn tt" title="تيك توك"><i class="fa-brands fa-tiktok"></i></a>`;
+      if(cfg.linkSnapchat) socialHTML += `<a href="${cfg.linkSnapchat}" target="_blank" class="social-btn snap" title="سناب شات"><i class="fa-brands fa-snapchat"></i></a>`;
+      if(cfg.linkFacebook) socialHTML += `<a href="${cfg.linkFacebook}" target="_blank" class="social-btn fb" title="فيسبوك"><i class="fa-brands fa-facebook"></i></a>`;
+      if(cfg.linkYoutube) socialHTML += `<a href="${cfg.linkYoutube}" target="_blank" class="social-btn yt" title="يوتيوب"><i class="fa-brands fa-youtube"></i></a>`;
+      
+      document.getElementById('view-socialContainer').innerHTML = socialHTML;
+      document.getElementById('footer-socials').innerHTML = socialHTML;
+
+      if(cfg.stats) {
+        document.getElementById('view-stats-container').innerHTML = cfg.stats.map(s => `
+          <div class="stat-card"><span class="stat-val">${s.val}</span><span class="stat-lbl">${s.lbl}</span></div>
+        `).join('');
+      }
+
+      const products = ZahratAndalusData.products || [];
+      document.getElementById('view-products-grid').innerHTML = products.map(p => `
+        <div class="item-card">
+          <div class="item-media"><img src="${p.img || 'https://via.placeholder.com/400x190.png?text=No+Image'}" alt="${p.title}"></div>
+          <div class="item-body">
+            <span class="item-meta">${p.meta || 'خامة ممتازة'}</span>
+            <h3 class="item-title">${p.title || 'بدون عنوان'}</h3>
+            <p class="item-desc">${p.desc || ''}</p>
+          </div>
+        </div>
+      `).join('');
+
+      const projects = ZahratAndalusData.projects || [];
+      document.getElementById('view-projects-grid').innerHTML = projects.map(p => `
+        <div class="item-card">
+          <div class="item-media"><img src="${p.img || 'https://via.placeholder.com/400x190.png?text=No+Image'}" alt="${p.title}"></div>
+          <div class="item-body">
+            <span class="item-meta">${p.meta || 'مشروع هندسي'}</span>
+            <h3 class="item-title">${p.title || 'بدون عنوان'}</h3>
+            <p class="item-desc">${p.desc || ''}</p>
+          </div>
+        </div>
+      `).join('');
+
+      const branches = ZahratAndalusData.branches || [];
+      document.getElementById('view-branches-grid').innerHTML = branches.map((b, bIdx) => {
+        const hasBanks = b.banks && b.banks.length > 0;
+        let selectOptionsHtml = '';
+        let initialIban = 'لا توجد حسابات بنكية مضافة حالياً';
+        let initialHolder = '';
+
+        if(hasBanks) {
+          selectOptionsHtml = b.banks.map((bank, bankIdx) => `<option value="${bankIdx}">${bank.bankName}</option>`).join('');
+          initialIban = b.banks[0].iban || '-';
+          initialHolder = b.banks[0].holderName ? ` | الاسم: ${b.banks[0].holderName}` : '';
+        }
+
+        return `
+          <div class="item-card">
+            <div class="item-body">
+              <h3 class="item-title" style="color:var(--primary); display:flex; justify-content:space-between; align-items:center;">
+                <span>${b.name || 'فرع جديد'}</span>
+                ${b.mapUrl ? `<a href="${b.mapUrl}" target="_blank" class="btn btn-primary" style="min-height:30px; padding:0 10px; font-size:11px; border-radius:6px;"><i class="fa-solid fa-map-location-dot"></i> موقع الفرع</a>` : ''}
+              </h3>
+              <div class="branch-inner">
+                <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: ${b.manager || 'غير محدد'}</div>
+                <div style="font-size:13px;"><i class="fa-solid fa-phone"></i> اتصال: <span style="direction:ltr; display:inline-block;">${b.phone || '-'}</span></div>
+              </div>
+              <div class="branch-inner" style="background:rgba(141,106,59,0.03);">
+                <div class="banks-container-box">
+                  ${hasBanks ? `
+                    <div class="bank-select-wrapper">
+                      <label><i class="fa-solid fa-building-columns"></i> اختر البنك للتحويل:</label>
+                      <select class="form-control" style="padding: 6px 10px; font-size:13px;" onchange="onBranchBankChange(this, ${bIdx})">
+                        ${selectOptionsHtml}
+                      </select>
+                    </div>
+                  ` : `<div class="manager-tag" style="font-size:12px; color:var(--danger);"><i class="fa-solid fa-circle-exclamation"></i> لا توجد حسابات بنكية مضافة</div>`}
+                  <div class="iban-copy-row">
+                    <div class="iban-display-field" id="iban-display-b${bIdx}">${initialIban}</div>
+                    ${hasBanks ? `<button class="btn-copy-action" onclick="copyIbanText('iban-display-b${bIdx}')" title="نسخ الآيبان"><i class="fa-solid fa-copy"></i> نسخ</button>` : ''}
+                  </div>
+                  <div style="font-size:11px; color:var(--muted); margin-top:2px;" id="holder-display-b${bIdx}">${initialHolder}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function onBranchBankChange(selectEl, branchIndex) {
+      const selectedBankIdx = selectEl.value;
+      const bankData = ZahratAndalusData.branches[branchIndex].banks[selectedBankIdx];
+      const ibanField = document.getElementById(`iban-display-b${branchIndex}`);
+      const holderField = document.getElementById(`holder-display-b${branchIndex}`);
+      if(bankData) {
+        ibanField.innerText = bankData.iban || '-';
+        holderField.innerText = bankData.holderName ? ` | الاسم: ${bankData.holderName}` : '';
+      }
+    }
+
+    function copyIbanText(elementId) {
+      const textToCopy = document.getElementById(elementId).innerText;
+      if(!textToCopy || textToCopy.includes('لا توجد')) return;
+      navigator.clipboard.writeText(textToCopy).then(() => alert("تم نسخ رقم الآيبان بنجاح!"));
+    }
+
+    function openLogin() { document.getElementById('loginOverlay').classList.add('active'); }
+    function closeLogin() { document.getElementById('loginOverlay').classList.remove('active'); }
+    
+    function verifyAdminLogin() {
+      if(document.getElementById('adminPasswordInput').value === "Andalus2026") {
+        sessionStorage.setItem('isAdmin', 'true');
+        closeLogin();
+        checkAdminSession();
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+      }
+    }
+    
+    function checkAdminSession() {
+      if(sessionStorage.getItem('isAdmin') === 'true') {
+        isAdminAuthenticated = true;
+        document.getElementById('loginTriggerBtn').style.display = 'none';
+        document.getElementById('dashboardPanelBtn').style.display = 'inline-flex';
+        document.getElementById('logoutBtn').style.display = 'inline-flex';
+      }
+    }
+    
+    function logoutAdmin() {
+      sessionStorage.removeItem('isAdmin');
+      window.location.reload();
+    }
+
+    function openAdminPanel() {
+      if(!isAdminAuthenticated) return;
+      document.getElementById('adminModal').classList.add('active');
+      const cfg = ZahratAndalusData.config || defaultAndalusData.config;
+      
+      document.getElementById('inp-brandName').value = cfg.brandName || '';
+      document.getElementById('inp-brandSubtitle').value = cfg.brandSubtitle || '';
+      document.getElementById('inp-logoUrl').value = cfg.logoUrl || '';
+      document.getElementById('inp-heroTitle').value = cfg.heroTitle || '';
+      document.getElementById('inp-heroDesc').value = cfg.heroDesc || '';
+      
+      document.getElementById('inp-linkWhatsapp').value = cfg.linkWhatsapp || '';
+      document.getElementById('inp-linkTwitter').value = cfg.linkTwitter || '';
+      document.getElementById('inp-linkInstagram').value = cfg.linkInstagram || '';
+      document.getElementById('inp-linkTiktok').value = cfg.linkTiktok || '';
+      document.getElementById('inp-linkSnapchat').value = cfg.linkSnapchat || '';
+      document.getElementById('inp-linkFacebook').value = cfg.linkFacebook || '';
+      document.getElementById('inp-linkYoutube').value = cfg.linkYoutube || '';
+
+      // 📥 ملء حقول الإحصائيات الأربعة في لوحة الإدارة عند فتحها
+      if (cfg.stats && cfg.stats.length >= 4) {
+        for (let i = 0; i < 4; i++) {
+          document.getElementById(`inp-statVal${i}`).value = cfg.stats[i].val || '';
+          document.getElementById(`inp-statLbl${i}`).value = cfg.stats[i].lbl || '';
+        }
+      }
+
+      refreshAdminLists();
+    }
+
+    function syncCurrentInputs() {
+      if (!isAdminAuthenticated) return;
+      if (!ZahratAndalusData.config) ZahratAndalusData.config = {};
+      
+      ZahratAndalusData.config.brandName = document.getElementById('inp-brandName').value;
+      ZahratAndalusData.config.brandSubtitle = document.getElementById('inp-brandSubtitle').value;
+      ZahratAndalusData.config.logoUrl = document.getElementById('inp-logoUrl').value;
+      ZahratAndalusData.config.heroTitle = document.getElementById('inp-heroTitle').value;
+      ZahratAndalusData.config.heroDesc = document.getElementById('inp-heroDesc').value;
+      
+      ZahratAndalusData.config.linkWhatsapp = document.getElementById('inp-linkWhatsapp').value;
+      ZahratAndalusData.config.linkTwitter = document.getElementById('inp-linkTwitter').value;
+      ZahratAndalusData.config.linkInstagram = document.getElementById('inp-linkInstagram').value;
+      ZahratAndalusData.config.linkTiktok = document.getElementById('inp-linkTiktok').value;
+      ZahratAndalusData.config.linkSnapchat = document.getElementById('inp-linkSnapchat').value;
+      ZahratAndalusData.config.linkFacebook = document.getElementById('inp-linkFacebook').value;
+      ZahratAndalusData.config.linkYoutube = document.getElementById('inp-linkYoutube').value;
+
+      // 📥 حفظ ومزامنة قيم الإحصائيات الأربعة الجديدة المدخلة من لوحة الإدارة
+      if (!ZahratAndalusData.config.stats) ZahratAndalusData.config.stats = [{}, {}, {}, {}];
+      for (let i = 0; i < 4; i++) {
+        ZahratAndalusData.config.stats[i] = {
+          val: document.getElementById(`inp-statVal${i}`).value,
+          lbl: document.getElementById(`inp-statLbl${i}`).value
+        };
+      }
+
+      const productCards = document.querySelectorAll('#admin-products-list .cms-card-item');
+      productCards.forEach((card, i) => {
+        if (ZahratAndalusData.products[i]) {
+          const inp = card.querySelectorAll('.form-control');
+          ZahratAndalusData.products[i].title = inp[0].value;
+          ZahratAndalusData.products[i].meta = inp[1].value;
+          ZahratAndalusData.products[i].img = inp[2].value;
+          ZahratAndalusData.products[i].desc = inp[3].value;
+        }
+      });
+
+      const projectCards = document.querySelectorAll('#admin-projects-list .cms-card-item');
+      projectCards.forEach((card, i) => {
+        if (ZahratAndalusData.projects[i]) {
+          const inp = card.querySelectorAll('.form-control');
+          ZahratAndalusData.projects[i].title = inp[0].value;
+          ZahratAndalusData.projects[i].meta = inp[1].value;
+          ZahratAndalusData.projects[i].img = inp[2].value;
+          ZahratAndalusData.projects[i].desc = inp[3].value;
+        }
+      });
+
+      const branchCards = document.querySelectorAll('#admin-branches-list > .cms-card-item');
+      branchCards.forEach((card, bIdx) => {
+        if (ZahratAndalusData.branches[bIdx]) {
+          const mainInp = card.querySelectorAll(':scope > .form-row .form-control');
+          ZahratAndalusData.branches[bIdx].name = mainInp[0].value;
+          ZahratAndalusData.branches[bIdx].manager = mainInp[1].value;
+          ZahratAndalusData.branches[bIdx].phone = mainInp[2].value;
+          ZahratAndalusData.branches[bIdx].mapUrl = mainInp[3].value;
+
+          const bankRows = card.querySelectorAll('.cms-bank-row-item');
+          bankRows.forEach((row, bankIdx) => {
+            if (ZahratAndalusData.branches[bIdx].banks[bankIdx]) {
+              const bInp = row.querySelectorAll('.form-control');
+              ZahratAndalusData.branches[bIdx].banks[bankIdx].bankName = bInp[0].value;
+              ZahratAndalusData.branches[bIdx].banks[bankIdx].holderName = bInp[1].value;
+              ZahratAndalusData.branches[bIdx].banks[bankIdx].iban = bInp[2].value;
+            }
+          });
+        }
+      });
+    }
+
+    function refreshAdminLists() {
+      const products = ZahratAndalusData.products || [];
+      document.getElementById('admin-products-list').innerHTML = products.map((p, index) => `
+        <div class="cms-card-item">
+          <button class="cms-delete-btn" onclick="removeItemFromJSON('products', ${index})"><i class="fa-solid fa-trash-can"></i></button>
+          <div class="form-row">
+            <div class="form-group"><label>اسم الخامة</label><input type="text" class="form-control" value="${p.title}"></div>
+            <div class="form-group"><label>التصنيف</label><input type="text" class="form-control" value="${p.meta}"></div>
+          </div>
+          <div class="form-group"><label>رابط الصورة</label><input type="text" class="form-control" value="${p.img}"></div>
+          <div class="form-group"><label>الوصف الفني</label><input type="text" class="form-control" value="${p.desc}"></div>
+        </div>
+      `).join('');
+
+      const projects = ZahratAndalusData.projects || [];
+      document.getElementById('admin-projects-list').innerHTML = projects.map((p, index) => `
+        <div class="cms-card-item">
+          <button class="cms-delete-btn" onclick="removeItemFromJSON('projects', ${index})"><i class="fa-solid fa-trash-can"></i></button>
+          <div class="form-row">
+            <div class="form-group"><label>عنوان المشروع</label><input type="text" class="form-control" value="${p.title}"></div>
+            <div class="form-group"><label>نوع التنفيذ</label><input type="text" class="form-control" value="${p.meta}"></div>
+          </div>
+          <div class="form-group"><label>رابط الصورة</label><input type="text" class="form-control" value="${p.img}"></div>
+          <div class="form-group"><label>تفاصيل العمل</label><input type="text" class="form-control" value="${p.desc}"></div>
+        </div>
+      `).join('');
+
+      const branches = ZahratAndalusData.branches || [];
+      document.getElementById('admin-branches-list').innerHTML = branches.map((b, bIndex) => {
+        const subBanksHTML = (b.banks || []).map((bank, bankIndex) => `
+          <div class="cms-bank-row-item">
+            <div class="form-group"><label>اسم البنك</label><input type="text" class="form-control" value="${bank.bankName}"></div>
+            <div class="form-group"><label>اسم صاحب الحساب</label><input type="text" class="form-control" value="${bank.holderName || ''}"></div>
+            <div class="form-group"><label>رقم الآيبان IBAN</label><input type="text" class="form-control" style="text-align:left; direction:ltr;" value="${bank.iban}"></div>
+            <button class="btn btn-danger" style="min-height:34px; padding: 0 10px;" onclick="removeSubBankFromBranch(${bIndex}, ${bankIndex})"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        `).join('');
+
+        return `
+          <div class="cms-card-item" style="border: 2px dashed var(--primary-soft);">
+            <button class="cms-delete-btn" onclick="removeItemFromJSON('branches', ${bIndex})"><i class="fa-solid fa-trash-can"></i></button>
+            <div class="form-row">
+              <div class="form-group"><label>اسم الفرع</label><input type="text" class="form-control" value="${b.name}"></div>
+              <div class="form-group"><label>اسم المشرف المسؤول</label><input type="text" class="form-control" value="${b.manager}"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>رقم الجوال</label><input type="text" class="form-control" value="${b.phone}"></div>
+              <div class="form-group"><label>رابط الموقع الجغرافي</label><input type="text" class="form-control" value="${b.mapUrl || ''}" style="text-align:left; direction:ltr;"></div>
+            </div>
+            <div class="cms-sub-banks-list">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:12px; font-weight:800;"><i class="fa-solid fa-wallet"></i> الحسابات البنكية</span>
+                <button class="btn btn-primary" style="min-height:28px; padding:0 10px; font-size:11px;" onclick="addSubBankToBranch(${bIndex})"><i class="fa-solid fa-plus"></i> حساب بنكي</button>
+              </div>
+              ${subBanksHTML || '<p style="font-size:11px; text-align:center; color:var(--muted);">لا توجد بنوك مضافة</p>'}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function addNewProductToJSON() { syncCurrentInputs(); ZahratAndalusData.products.push({ id: Date.now(), title: "خامة جديدة", desc: "", meta: "", img: "" }); refreshAdminLists(); }
+    function addNewProjectToJSON() { syncCurrentInputs(); ZahratAndalusData.projects.push({ id: Date.now(), title: "مشروع جديد", desc: "", meta: "", img: "" }); refreshAdminLists(); }
+    function addNewBranchToJSON() { syncCurrentInputs(); ZahratAndalusData.branches.push({ id: Date.now(), name: "فرع جديد", manager: "", phone: "", mapUrl: "", banks: [] }); refreshAdminLists(); }
+
+    function addSubBankToBranch(branchIndex) {
+      syncCurrentInputs();
+      if(!ZahratAndalusData.branches[branchIndex].banks) ZahratAndalusData.branches[branchIndex].banks = [];
+      ZahratAndalusData.branches[branchIndex].banks.push({ bankName: "البنك الجديد", holderName: "مؤسسة زهرة الأندلس", iban: "SA" });
+      refreshAdminLists();
+    }
+    function removeSubBankFromBranch(branchIndex, bankIndex) { syncCurrentInputs(); ZahratAndalusData.branches[branchIndex].banks.splice(bankIndex, 1); refreshAdminLists(); }
+    function removeItemFromJSON(category, index) { syncCurrentInputs(); ZahratAndalusData[category].splice(index, 1); refreshAdminLists(); }
+
+    function closeAdminPanel() { document.getElementById('adminModal').classList.remove('active'); }
+    function switchTab(e, tabId) { syncCurrentInputs(); document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active')); document.querySelectorAll('.tab-pane').forEach(p => p.style.display = 'none'); e.target.classList.add('active'); document.getElementById(tabId).style.display = 'block'; }
+
+    async function saveAdminDashboard() {
+      syncCurrentInputs();
+      ZahratAndalusData.config.logoUrl = convertToDirectDriveLink(ZahratAndalusData.config.logoUrl);
+      ZahratAndalusData.products.forEach((p, i) => { if(p.img) ZahratAndalusData.products[i].img = convertToDirectDriveLink(p.img); });
+      ZahratAndalusData.projects.forEach((p, i) => { if(p.img) ZahratAndalusData.projects[i].img = convertToDirectDriveLink(p.img); });
+
+      const success = await StorageEngine.save(ZahratAndalusData);
+      if(success) { renderFrontendView(); closeAdminPanel(); alert("تم حفظ وتحديث المنصة السحابية بنجاح!"); }
+    }
+
+    function exportDataJSON() {
+      syncCurrentInputs();
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(ZahratAndalusData, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "Zahrat_AlAndalus_Data.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    function exportCleanClientHtml() {
+      const cloneDoc = document.documentElement.cloneNode(true);
+      
+      const adminSelectors = ['#adminBar', '#loginOverlay', '#adminModal', '.cms-delete-btn'];
+      adminSelectors.forEach(selector => {
+        const elements = cloneDoc.querySelectorAll(selector);
+        elements.forEach(el => el.remove());
+      });
+
+      const finalHtmlContent = "<!DOCTYPE html>\n" + cloneDoc.outerHTML;
+      const blob = new Blob([finalHtmlContent], { type: "text/html;charset=utf-8" });
+      const downloadLink = document.createElement('a');
+      downloadLink.href = URL.createObjectURL(blob);
+      downloadLink.download = "zahrat_al_andalus_portal.html";
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      downloadLink.remove();
+    }
+
+    function handleQuoteFormSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById('quote-name').value;
+      const phone = document.getElementById('quote-phone').value;
+      const city = document.getElementById('quote-city').value;
+      const service = document.getElementById('quote-service').value;
+      const whatsappBaseNumber = ZahratAndalusData.config.linkWhatsapp || "966500000000";
+      
+      const messageText = `*طلب عرض سعر جديد - @مؤسسة زهرة الأندلس*\n\n` +
+                          `• *اسم العميل:* ${name}\n` +
+                          `• *رقم الجوال:* ${phone}\n` +
+                          `• *المدينة والموقع:* ${city}\n` +
+                          `• *الخدمة المطلوبة:* ${service}`;
+
+      window.open(`https://api.whatsapp.com/send?phone=${whatsappBaseNumber}&text=${encodeURIComponent(messageText)}`, '_blank');
+    }
+
+    function toggleTheme() {
+      const currentTheme = document.body.getAttribute('data-theme');
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.body.setAttribute('data-theme', nextTheme);
+      document.querySelector('.theme-fab i').className = nextTheme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    }
+  </script>
+
+</body></html>
