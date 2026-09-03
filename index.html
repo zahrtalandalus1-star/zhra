@@ -420,12 +420,85 @@
       .modal-tabs { gap: 5px; padding: 6px; }
       .modal-tab { min-height: 54px; font-size: 11px; }
     }
+
+    /* تحسين أيقونة الشعار للجوال */
+    .brand-identity { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .brand-identity > div:last-child { min-width: 0; }
+    .logo-box { flex: 0 0 68px; display: flex; align-items: center; justify-content: center; background: #fff; box-shadow: 0 8px 20px rgba(0,0,0,.18); }
+    .logo-box img { object-fit: contain; padding: 4px; }
+    @media (max-width: 600px) {
+      .brand-area { align-items: flex-start; gap: 10px; }
+      .brand-identity { gap: 10px; width: 100%; }
+      .logo-box { flex-basis: 52px; width: 52px; height: 52px; border-width: 2px; border-radius: 15px; }
+      .logo-box img { padding: 3px; }
+      #view-brandName { font-size: 1.05rem !important; line-height: 1.4; overflow-wrap: anywhere; }
+      #view-brandSubtitle { font-size: 10px !important; line-height: 1.55; margin-top: 2px; }
+    }
+
+    /* الشعار الدائري الموحد بين الكمبيوتر والجوال */
+    .logo-box {
+      border-radius: 50% !important;
+      overflow: hidden;
+      background: #fff;
+      border: 3px solid rgba(255,255,255,.3);
+      flex: 0 0 68px;
+      width: 68px;
+      height: 68px;
+    }
+    .logo-box img { width: 100%; height: 100%; object-fit: contain; padding: 5px; border-radius: 50%; }
+    @media (max-width: 600px) {
+      .brand-identity { gap: 10px; align-items: center; }
+      .logo-box { width: 58px; height: 58px; flex-basis: 58px; border-radius: 50% !important; border-width: 2px; }
+      .logo-box img { padding: 4px; }
+      #view-brandName { font-size: 1.05rem !important; line-height: 1.35; }
+      #view-brandSubtitle { font-size: 10px !important; line-height: 1.5; }
+    }
+
+    /* المرحلة الأولى: تحميل أخف للصور وحالات واضحة أثناء التحميل */
+    .gallery-thumb { contain: layout paint; }
+    .gallery-thumb img { background: linear-gradient(135deg, rgba(141,106,59,.10), rgba(33,50,79,.12)); }
+    .gallery-thumb img.gallery-loading { opacity: .55; filter: blur(5px); }
+    .gallery-thumb img.gallery-loaded { opacity: 1; filter: none; transition: opacity .25s ease, filter .25s ease, transform .22s ease; }
+    .gallery-thumb .gallery-loading-mark { position: absolute; inset: 0; display: grid; place-items: center; color: var(--primary); pointer-events: none; font-size: 18px; }
+    .gallery-thumb .gallery-loading-mark i { animation: gallerySpin .8s linear infinite; }
+    @keyframes gallerySpin { to { transform: rotate(360deg); } }
+    .gallery-lightbox img.gallery-lightbox-loading { opacity: .35; }
+    .gallery-lightbox img.gallery-lightbox-ready { opacity: 1; transition: opacity .2s ease; }
+    @media (prefers-reduced-motion: reduce) { .gallery-thumb .gallery-loading-mark i { animation: none; } }
+
+    /* المرحلة الثانية: مركز إدارة سريع للأقسام */
+    .admin-filter-row { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-top: 9px; }
+    .admin-filter-label { color: var(--muted); font-size: 11px; font-weight: 700; margin-left: 3px; }
+    .admin-filter-btn { min-height: 32px; padding: 6px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface-strong); color: var(--text); font: inherit; font-size: 11px; font-weight: 700; cursor: pointer; }
+    .admin-filter-btn:hover, .admin-filter-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .admin-filter-count { display: inline-flex; min-width: 18px; justify-content: center; margin-right: 3px; padding: 1px 4px; border-radius: 999px; background: rgba(0,0,0,.08); font-size: 10px; }
+    .admin-filter-btn.active .admin-filter-count { background: rgba(255,255,255,.18); }
+    @media (max-width: 600px) { .admin-filter-row { align-items: stretch; } .admin-filter-label { width: 100%; } .admin-filter-btn { flex: 1 1 calc(50% - 7px); } }
+
+    /* قسم العروض وإدارته */
+    .offer-section { border-top: 3px solid var(--primary); }
+    .offer-card { position: relative; overflow: hidden; border: 1px solid rgba(141,106,59,.28); border-radius: var(--radius-md); background: linear-gradient(145deg, var(--surface-strong), rgba(141,106,59,.08)); box-shadow: var(--shadow-soft); }
+    .offer-card::before { content: 'عرض خاص'; position: absolute; top: 12px; right: 12px; z-index: 2; padding: 5px 9px; border-radius: 999px; background: var(--primary); color: #fff; font-size: 11px; font-weight: 800; }
+    .offer-card .item-media { padding: 10px 10px 0; }
+    .offer-card .item-body { padding-top: 14px; }
+    .offer-prices { display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap; margin-top: 10px; }
+    .offer-price-new { color: var(--primary); font-size: 20px; font-weight: 900; }
+    .offer-price-old { color: var(--muted); font-size: 12px; text-decoration: line-through; }
+    .offer-discount { display: inline-flex; padding: 3px 8px; border-radius: 999px; background: rgba(197,61,61,.12); color: var(--danger); font-size: 11px; font-weight: 800; }
+    .offer-action { display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 42px; margin-top: 13px; border-radius: 10px; background: var(--secondary); color: #fff; text-decoration: none; font-size: 12px; font-weight: 800; }
+    .offer-action:hover { background: var(--primary); }
+    .admin-overview { grid-template-columns: repeat(5, 1fr); }
+    .admin-image-hub { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .admin-offer-card .form-row { margin-bottom: 0; }
+    .admin-offer-badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 999px; background: rgba(141,106,59,.11); color: var(--primary-dark); font-size: 11px; font-weight: 800; }
+    @media (max-width: 900px) { .admin-overview { grid-template-columns: repeat(3, 1fr); } .admin-image-hub { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 600px) { .admin-overview { grid-template-columns: repeat(2, 1fr); } .admin-image-hub { grid-template-columns: 1fr; } .offer-card .gallery-thumb { min-width: 78vw; } }
   </style>
 
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </head>
-<body data-theme="light">
+<body data-theme="light" style="">
 
   
 
@@ -439,8 +512,8 @@
     <section class="hero">
       <div class="hero-shell" id="view-heroBg">
         <div class="brand-area">
-          <div style="display: flex; align-items: center; gap: 14px;">
-            <div class="logo-box"><img id="view-brandLogo" src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1-Nk1Wg2GV6FTtvquELG0tccIKmvnkcjg" alt="الشعار"></div>
+          <div class="brand-identity">
+            <div class="logo-box"><img id="view-brandLogo" src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1-Nk1Wg2GV6FTtvquELG0tccIKmvnkcjg" alt="شعار مؤسسة زهرة الأندلس" onerror="this.onerror=null; this.src='https://via.placeholder.com/160x160.png?text=ZA';"></div>
             <div>
               <h2 id="view-brandName" style="font-weight: 800; font-size: clamp(1.2rem, 3.5vw, 1.6rem);">مؤسسة زهرة الأندلس </h2>
               <p id="view-brandSubtitle" style="font-size: 13px; color: rgba(255,255,255,0.75);">نقدم في مؤسسة زهرة الأندلس حلولاً متكاملة في توريد وتركيب الرخام والحجر الطبيعي والأعمال الهندسية، مع عناية دقيقة بالتفاصيل، واختيار واعٍ للمواد، وتنفيذ يوازن بين الجمال والمتانة في المشاريع السكنية والتجارية.</p>
@@ -449,6 +522,7 @@
           <div class="sheet-nav">
             <a href="#about-sec">من نحن</a>
             <a href="#products-sec">خاماتنا</a>
+            <a href="#offers-sec">العروض</a>
             <a href="#projects-sec">مشاريعنا</a>
             <a href="#branches-sec">الفروع والملفات</a>
           </div>
@@ -517,7 +591,16 @@
         <h2 class="section-title">تشكيلة واسعة من الرخام والحجر الطبيعي الممتاز</h2>
         <p class="section-desc">مستخرجة ومصنعة بأعلى درجات المعايرة والمقاييس المعمارية.</p>
       </div>
-      <div class="data-grid" id="view-products-grid"><div class="item-card"><div class="item-media"><div class="gallery-track"><button class="gallery-thumb" onclick="openGallery('products', 0, 0)" aria-label="عرض صورة 1 من 1"><img src="https://via.placeholder.com/600x380.png?text=Image+Error" alt="قسم العروض" loading="lazy" onerror="this.src='https://via.placeholder.com/600x380.png?text=Image+Error'"><span class="gallery-count"><i class="fa-solid fa-images"></i> 1</span></button></div></div><div class="item-body"><span class="item-meta">عروض خاصة لزوار الموقع</span><h3 class="item-title">قسم العروض</h3><p class="item-desc">اجعل منزلك تحفة معمارية تنبض بالفخامة! نوفر لك أرقى أنواع الحجر الطبيعي (سعودي، أردني، سوري) تركيب واجهات حجر -  نضمن لك جودة عالية، عزل حراري متين، ولمسات فنية بأيدي أفضل الخبراء. تواصل معنا لتصميم واجهة أحلامك!</p></div></div><div class="item-card"><div class="item-media"><div class="gallery-track"><button class="gallery-thumb" onclick="openGallery('products', 1, 0)" aria-label="عرض صورة 1 من 1"><img src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1vgDF0SkqRVQxaoMtxsUZU3Xgv2Y_zyjM" alt="ديكورات داخلية" loading="lazy" onerror="this.src='https://via.placeholder.com/600x380.png?text=Image+Error'"><span class="gallery-count"><i class="fa-solid fa-images"></i> 1</span></button></div></div><div class="item-body"><span class="item-meta">ديكورات</span><h3 class="item-title">ديكورات داخلية</h3><p class="item-desc">توفير تشكيلة حديثة من النوافير والبحرات و ديكورات الجاهزة بافخم الموديلات الحديثة</p></div></div><div class="item-card"><div class="item-media"><div class="gallery-track"><button class="gallery-thumb" onclick="openGallery('products', 2, 0)" aria-label="عرض صورة 1 من 1"><img src="https://via.placeholder.com/600x380.png?text=Image+Error" alt="خامة جديدة" loading="lazy" onerror="this.src='https://via.placeholder.com/600x380.png?text=Image+Error'"><span class="gallery-count"><i class="fa-solid fa-images"></i> 1</span></button></div></div><div class="item-body"><span class="item-meta">خامة ممتازة</span><h3 class="item-title">خامة جديدة</h3><p class="item-desc"></p></div></div></div>
+      <div class="data-grid" id="view-products-grid"><div class="item-card"><div class="item-media"><div class="gallery-track"><button class="gallery-thumb" onclick="openGallery('products', 0, 0)" aria-label="عرض صورة 1 من 4"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=14ZodmAwDFN-03va98oMapELB9DS5nyGl" alt="قسم الدرج" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 4</span></button><button class="gallery-thumb" onclick="openGallery('products', 0, 1)" aria-label="عرض صورة 2 من 4"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1BIh0d-_1nz1rL3_LdieQZjGiqZN0UdxJ" alt="قسم الدرج" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 4</span></button><button class="gallery-thumb" onclick="openGallery('products', 0, 2)" aria-label="عرض صورة 3 من 4"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1XdTYLDh1sHHrQTrF8vekiTGdnC2vY5N0" alt="قسم الدرج" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 4</span></button><button class="gallery-thumb" onclick="openGallery('products', 0, 3)" aria-label="عرض صورة 4 من 4"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1t8kr2XsszzPnJyJJSjB6IrKgBicwhc9A" alt="قسم الدرج" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 4</span></button></div></div><div class="item-body"><span class="item-meta">عروض خاصة لزوار الموقع</span><h3 class="item-title">قسم الدرج</h3><p class="item-desc">اجعل منزلك تحفة معمارية تنبض بالفخامة! نوفر لك أرقى أنواع الحجر الطبيعي (سعودي، أردني، سوري) تركيب واجهات حجر -  نضمن لك جودة عالية، عزل حراري متين، ولمسات فنية بأيدي أفضل الخبراء. تواصل معنا لتصميم واجهة أحلامك!</p></div></div><div class="item-card"><div class="item-media"><div class="gallery-track"><button class="gallery-thumb" onclick="openGallery('products', 1, 0)" aria-label="عرض صورة 1 من 2"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1vgDF0SkqRVQxaoMtxsUZU3Xgv2Y_zyjM" alt="ديكورات داخلية" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 2</span></button><button class="gallery-thumb" onclick="openGallery('products', 1, 1)" aria-label="عرض صورة 2 من 2"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1HSLsG2oxlWzJHzmS0-uqqvUsNnAzSQ4R" alt="ديكورات داخلية" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 2</span></button></div></div><div class="item-body"><span class="item-meta">ديكورات</span><h3 class="item-title">ديكورات داخلية</h3><p class="item-desc">توفير تشكيلة حديثة من النوافير والبحرات و ديكورات الجاهزة بافخم الموديلات الحديثة</p></div></div><div class="item-card"><div class="item-media"><div class="gallery-track"><button class="gallery-thumb" onclick="openGallery('products', 2, 0)" aria-label="عرض صورة 1 من 2"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=17tUGc5HTBbIfeSC1SuWlCJl4-h4trpwM" alt="ديكورات خارجية" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 2</span></button><button class="gallery-thumb" onclick="openGallery('products', 2, 1)" aria-label="عرض صورة 2 من 2"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1zooh3nkD_E-cQhJUVbiPX2tup_OkLqT5" alt="ديكورات خارجية" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 2</span></button></div></div><div class="item-body"><span class="item-meta">خامة ممتازة</span><h3 class="item-title">ديكورات خارجية</h3><p class="item-desc"></p></div></div><div class="item-card"><div class="item-media"><div class="gallery-track"><button class="gallery-thumb" onclick="openGallery('products', 3, 0)" aria-label="عرض صورة 1 من 4"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1MlgsCrOGVzy9GQQ-JL-rvhrqrCFa-r7W" alt="مغاسل" loading="lazy" decoding="async" class="gallery-loaded" onerror="handleGalleryImageError(this)" data-loading="false" src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1MlgsCrOGVzy9GQQ-JL-rvhrqrCFa-r7W" data-loaded="true"><span class="gallery-count"><i class="fa-solid fa-images"></i> 4</span></button><button class="gallery-thumb" onclick="openGallery('products', 3, 1)" aria-label="عرض صورة 2 من 4"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1zjHnOZgWpi8cGOlMpGqgaZ33kzcIp2j0" alt="مغاسل" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 4</span></button><button class="gallery-thumb" onclick="openGallery('products', 3, 2)" aria-label="عرض صورة 3 من 4"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1UNY6UU3PUVqGiw8JIb26ZU2RW_ZcGo5O" alt="مغاسل" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 4</span></button><button class="gallery-thumb" onclick="openGallery('products', 3, 3)" aria-label="عرض صورة 4 من 4"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=16ET7W3emCn3mueS_jKR9cWERrndI1R-0" alt="مغاسل" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 4</span></button></div></div><div class="item-body"><span class="item-meta">خامة ممتازة</span><h3 class="item-title">مغاسل</h3><p class="item-desc">تفصيل مغاسل رخام صناعي و طبيعي و بورسلاان</p></div></div><div class="item-card"><div class="item-media"><div class="gallery-track"><button class="gallery-thumb" onclick="openGallery('products', 4, 0)" aria-label="عرض صورة 1 من 4"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1wHIp3dXUqj45zitqdjQZDO-o0eDF1U3R" alt="واجهات خارجي" loading="lazy" decoding="async" class="gallery-loaded" onerror="handleGalleryImageError(this)" data-loading="false" src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1wHIp3dXUqj45zitqdjQZDO-o0eDF1U3R" data-loaded="true"><span class="gallery-count"><i class="fa-solid fa-images"></i> 4</span></button><button class="gallery-thumb" onclick="openGallery('products', 4, 1)" aria-label="عرض صورة 2 من 4"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1ZqUJ8FfHnN8Z0SUUtbo1afGqMM1HGtMx" alt="واجهات خارجي" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 4</span></button><button class="gallery-thumb" onclick="openGallery('products', 4, 2)" aria-label="عرض صورة 3 من 4"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1xMVL1vYrHwSRIvxABW909zyXCyyD1fLd" alt="واجهات خارجي" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 4</span></button><button class="gallery-thumb" onclick="openGallery('products', 4, 3)" aria-label="عرض صورة 4 من 4"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1YhLbVjed6KPC-KXaZgLPGPM_K7hHk1T-" alt="واجهات خارجي" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 4</span></button></div></div><div class="item-body"><span class="item-meta">خامة ممتازة</span><h3 class="item-title">واجهات خارجي</h3><p class="item-desc">واجهات حجر طبيعي و رخام </p></div></div></div>
+    </section>
+
+    <section class="section offer-section" id="offers-sec">
+      <div class="section-header">
+        <span class="eyebrow"><i class="fa-solid fa-tags"></i> عروضنا الحالية</span>
+        <h2 class="section-title">عروض مميزة لفترة محدودة</h2>
+        <p class="section-desc">استفد من عروضنا المتاحة وتواصل معنا لمعرفة التفاصيل.</p>
+      </div>
+      <div class="data-grid" id="view-offers-grid"><div class="offer-card item-card"><div class="item-media"><div class="gallery-track"><button class="gallery-thumb" onclick="openGallery('offers', 0, 0)" aria-label="عرض صورة 1 من 4"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=13MCedctFMsZHnNnqZDqJK1rwUmjNkwYS" alt="عروض اليوم الوطني" loading="lazy" decoding="async" class="gallery-loaded" onerror="handleGalleryImageError(this)" data-loading="false" src="https://drive.google.com/thumbnail?sz=w1200&amp;id=13MCedctFMsZHnNnqZDqJK1rwUmjNkwYS" data-loaded="true"><span class="gallery-count"><i class="fa-solid fa-images"></i> 4</span></button><button class="gallery-thumb" onclick="openGallery('offers', 0, 1)" aria-label="عرض صورة 2 من 4"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=15lW-A9ff8pY7d-WMMhv7z_8RYr0mrRWg" alt="عروض اليوم الوطني" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 4</span></button><button class="gallery-thumb" onclick="openGallery('offers', 0, 2)" aria-label="عرض صورة 3 من 4"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1gsTSgCP34YZPAwLVt1bK0y92hE3CeoQC" alt="عروض اليوم الوطني" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 4</span></button><button class="gallery-thumb" onclick="openGallery('offers', 0, 3)" aria-label="عرض صورة 4 من 4"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1YvM6eitSgjCbrWgyCz-wYvxJ168OhZJy" alt="عروض اليوم الوطني" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> 4</span></button></div></div><div class="item-body"><span class="item-meta">عرض خاص</span><h3 class="item-title">عروض اليوم الوطني</h3><p class="item-desc">احتفالاً باليوم الوطني، نوفر لكم أقوى العروض على بورسلان فنار مقاس 40×90 سم بتصاميم حديثة وجودة عالية تناسب مختلف المساحات الداخلية والجدران.</p><div class="offer-prices"><span class="offer-price-new">19.96</span><span class="offer-price-old">45</span></div><a class="offer-action" href="https://wa.me/966557278262" target="_blank" rel="noopener"><i class="fa-solid fa-paper-plane"></i> اطلب العرض الآن</a></div></div></div>
     </section>
 
     <section class="section" id="projects-sec">
@@ -526,7 +609,7 @@
         <h2 class="section-title">مشاريع هندسية نفخر بتشغيلها وإدارتها</h2>
         <p class="section-desc">شاهد تفاصيل التنفيذ المتناسق في واجهات القصور والمباني التجارية.</p>
       </div>
-      <div class="data-grid" id="view-projects-grid"><div class="item-card"><div class="item-media"><div class="gallery-track"><button class="gallery-thumb" onclick="openGallery('projects', 0, 0)" aria-label="عرض صورة 1 من 1"><img src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1iKcU3cM3jeknOG4ldjfuBbdbtIrrQWLH" alt="تفصيل وتصميم و اشراف وتنفيذ" loading="lazy" onerror="this.src='https://via.placeholder.com/600x380.png?text=Image+Error'"><span class="gallery-count"><i class="fa-solid fa-images"></i> 1</span></button></div></div><div class="item-body"><span class="item-meta">خدمات </span><h3 class="item-title">تفصيل وتصميم و اشراف وتنفيذ</h3><p class="item-desc">نقدم لك دليلاً شاملاً لتصميم وتفصيل وتركيب مغاسل الرخام الفاخرة بأسلوب هندسي دقيق. نضمن لك تنفيذ المشاريع بدءاً من الرفع المساحي والتصميم ثلاثي الأبعاد (3D)، مروراً بـ الإشراف الهندسي وانتهاءً بـ التركيب الاحترافي لضمان أعلى معايير الجودة.</p></div></div></div>
+      <div class="data-grid" id="view-projects-grid"><div class="item-card"><div class="item-media"><div class="gallery-track"><button class="gallery-thumb" onclick="openGallery('projects', 0, 0)" aria-label="عرض صورة 1 من 1"><img data-src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1iKcU3cM3jeknOG4ldjfuBbdbtIrrQWLH" alt="تفصيل وتصميم و اشراف وتنفيذ" loading="lazy" decoding="async" class="gallery-loaded" onerror="handleGalleryImageError(this)" data-loading="false" src="https://drive.google.com/thumbnail?sz=w1200&amp;id=1iKcU3cM3jeknOG4ldjfuBbdbtIrrQWLH" data-loaded="true"><span class="gallery-count"><i class="fa-solid fa-images"></i> 1</span></button></div></div><div class="item-body"><span class="item-meta">خدمات </span><h3 class="item-title">تفصيل وتصميم و اشراف وتنفيذ</h3><p class="item-desc">نقدم لك دليلاً شاملاً لتصميم وتفصيل وتركيب مغاسل الرخام الفاخرة بأسلوب هندسي دقيق. نضمن لك تنفيذ المشاريع بدءاً من الرفع المساحي والتصميم ثلاثي الأبعاد (3D)، مروراً بـ الإشراف الهندسي وانتهاءً بـ التركيب الاحترافي لضمان أعلى معايير الجودة.</p></div></div></div>
     </section>
 
     <section class="section" id="branches-sec">
@@ -540,7 +623,7 @@
             <div class="item-body">
               <h3 class="item-title" style="color:var(--primary); display:flex; justify-content:space-between; align-items:center;">
                 <span>المستودع الرئيسي</span>
-                <a href="https://maps.app.goo.gl/ozNVReUmSgpAr41y7" target="_blank" class="btn btn-primary" style="min-height:30px; padding:0 10px; font-size:11px; border-radius:6px;"><i class="fa-solid fa-map-location-dot"></i> موقع الفرع</a>
+                <a href="https://maps.app.goo.gl/JgkEfWGn7Q8MyWoA6" target="_blank" class="btn btn-primary" style="min-height:30px; padding:0 10px; font-size:11px; border-radius:6px;"><i class="fa-solid fa-map-location-dot"></i> موقع الفرع</a>
               </h3>
               <div class="branch-inner">
                 <div class="manager-tag"><i class="fa-solid fa-user-tie"></i> المسؤول: محمود زهران</div>
@@ -722,8 +805,8 @@
     <button class="gallery-close" onclick="closeGallery()" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
     <button class="gallery-arrow prev" onclick="moveGallery(-1)" aria-label="الصورة السابقة"><i class="fa-solid fa-chevron-right"></i></button>
     <figure>
-      <img id="galleryLightboxImage" src="" alt="">
-      <figcaption class="gallery-caption" id="galleryLightboxCaption"></figcaption>
+      <img id="galleryLightboxImage" src="https://drive.google.com/thumbnail?sz=w1200&amp;id=13MCedctFMsZHnNnqZDqJK1rwUmjNkwYS" alt="عروض اليوم الوطني" class="gallery-lightbox-ready">
+      <figcaption class="gallery-caption" id="galleryLightboxCaption">عروض اليوم الوطني — 1 / 4</figcaption>
     </figure>
     <button class="gallery-arrow next" onclick="moveGallery(1)" aria-label="الصورة التالية"><i class="fa-solid fa-chevron-left"></i></button>
   </div>
@@ -772,6 +855,7 @@
         ]
       },
       products: [],
+      offers: [],
       projects: [],
       branches: []
     };
@@ -817,7 +901,11 @@
     let isAdminAuthenticated = false;
 
     document.addEventListener("DOMContentLoaded", async () => {
-      ZahratAndalusData = await StorageEngine.get();
+      ZahratAndalusData = {"offers":[{"id":1788413025997,"title":"عروض اليوم الوطني","desc":"احتفالاً باليوم الوطني، نوفر لكم أقوى العروض على بورسلان فنار مقاس 40×90 سم بتصاميم حديثة وجودة عالية تناسب مختلف المساحات الداخلية والجدران.","meta":"عرض خاص","img":"https://drive.google.com/thumbnail?sz=w1200&id=13MCedctFMsZHnNnqZDqJK1rwUmjNkwYS","images":["https://drive.google.com/thumbnail?sz=w1200&id=15lW-A9ff8pY7d-WMMhv7z_8RYr0mrRWg","https://drive.google.com/thumbnail?sz=w1200&id=1gsTSgCP34YZPAwLVt1bK0y92hE3CeoQC","https://drive.google.com/thumbnail?sz=w1200&id=1YvM6eitSgjCbrWgyCz-wYvxJ168OhZJy"],"priceOld":"45","priceNew":"19.96","discount":"","startDate":"2026-09-02","endDate":"2026-09-12","status":"published","ctaLabel":"اطلب العرض الآن","ctaUrl":""}],"branches":[{"mapUrl":"https://maps.app.goo.gl/JgkEfWGn7Q8MyWoA6","phone":"0507524671","id":1782285075535,"manager":"محمود زهران","banks":[{"holderName":"مؤسسة زهرة الأندلس","iban":"SA308000010006080567328","bankName":"مصرف الراجحي"},{"iban":"SA3510000001400034711204","bankName":"مصرف الاهلي","holderName":"مؤسسة زهرة الأندلس"},{"bankName":"مصرف الرياض","holderName":"مؤسسة زهرة الأندلس","iban":"SA6220000003561519319940"}],"name":"المستودع الرئيسي"},{"banks":[{"bankName":"مصرف الاهلي","holderName":"مؤسسة زهرة الأندلس","iban":"SA5710000001400034710905"}],"name":"فرع رقم 2 (الهدى سابقا)","manager":"محمد عبد الوهاب","mapUrl":"https://maps.app.goo.gl/EZFFMQXqJ6THAaZC8","phone":"0535761684","id":1782285357368},{"id":1782285408721,"mapUrl":"https://maps.app.goo.gl/ozNVReUmSgpAr41y7","banks":[{"bankName":"مصرف الاهلي","holderName":"مؤسسة زهرة الأندلس","iban":"SA681000000570000129507"},{"iban":"SA308000010006080567328","bankName":"مصرف الراجحي","holderName":"مؤسسة زهرة الأندلس"}],"manager":"محمد","phone":"0545858177","name":"الفرع ( الرئيسي )"},{"id":1782285724494,"name":"فرع رقم 3 (البوابة سابقا)","mapUrl":"https://maps.app.goo.gl/CByPQy7vfRsyeR277","phone":"0560822558","manager":"محمد","banks":[{"holderName":"مؤسسة زهرة الأندلس","iban":"SA6210000001400034711106","bankName":"مصرف الاهلي"}]},{"banks":[{"iban":"SA6810000096200002449005","bankName":"مصرف الراجحي","holderName":"مؤسسة زهرة الأندلس"},{"holderName":"مؤسسة زهرة الأندلس","bankName":"بنك الرياض","iban":"SA3520000003045713629940"}],"name":"فرع رقم 4 (فنون سابقا)","mapUrl":"https://maps.app.goo.gl/sYwWtg6xJoFRbyXn8","phone":"0557278262","manager":"أحمد الهباب","id":1782285989276}],"products":[{"meta":"عروض خاصة لزوار الموقع","desc":"اجعل منزلك تحفة معمارية تنبض بالفخامة! نوفر لك أرقى أنواع الحجر الطبيعي (سعودي، أردني، سوري) تركيب واجهات حجر -  نضمن لك جودة عالية، عزل حراري متين، ولمسات فنية بأيدي أفضل الخبراء. تواصل معنا لتصميم واجهة أحلامك!","title":"قسم الدرج","id":1782286314002,"img":"https://drive.google.com/thumbnail?sz=w1200&id=14ZodmAwDFN-03va98oMapELB9DS5nyGl","images":["https://drive.google.com/thumbnail?sz=w1200&id=1BIh0d-_1nz1rL3_LdieQZjGiqZN0UdxJ","https://drive.google.com/thumbnail?sz=w1200&id=1XdTYLDh1sHHrQTrF8vekiTGdnC2vY5N0","https://drive.google.com/thumbnail?sz=w1200&id=1t8kr2XsszzPnJyJJSjB6IrKgBicwhc9A"]},{"meta":"ديكورات","desc":"توفير تشكيلة حديثة من النوافير والبحرات و ديكورات الجاهزة بافخم الموديلات الحديثة","title":"ديكورات داخلية","img":"https://drive.google.com/thumbnail?sz=w1200&id=1vgDF0SkqRVQxaoMtxsUZU3Xgv2Y_zyjM","id":1782320034974,"images":["https://drive.google.com/thumbnail?sz=w1200&id=1HSLsG2oxlWzJHzmS0-uqqvUsNnAzSQ4R"]},{"id":1788109561314,"title":"ديكورات خارجية","desc":"","meta":"","img":"https://drive.google.com/thumbnail?sz=w1200&id=17tUGc5HTBbIfeSC1SuWlCJl4-h4trpwM","images":["https://drive.google.com/thumbnail?sz=w1200&id=1zooh3nkD_E-cQhJUVbiPX2tup_OkLqT5"]},{"id":1788366369042,"title":"مغاسل","desc":"تفصيل مغاسل رخام صناعي و طبيعي و بورسلاان","meta":"","img":"https://drive.google.com/thumbnail?sz=w1200&id=1MlgsCrOGVzy9GQQ-JL-rvhrqrCFa-r7W","images":["https://drive.google.com/thumbnail?sz=w1200&id=1zjHnOZgWpi8cGOlMpGqgaZ33kzcIp2j0","https://drive.google.com/thumbnail?sz=w1200&id=1UNY6UU3PUVqGiw8JIb26ZU2RW_ZcGo5O","https://drive.google.com/thumbnail?sz=w1200&id=16ET7W3emCn3mueS_jKR9cWERrndI1R-0"]},{"id":1788366428004,"title":"واجهات خارجي","desc":"واجهات حجر طبيعي و رخام ","meta":"","img":"https://drive.google.com/thumbnail?sz=w1200&id=1wHIp3dXUqj45zitqdjQZDO-o0eDF1U3R","images":["https://drive.google.com/thumbnail?sz=w1200&id=1ZqUJ8FfHnN8Z0SUUtbo1afGqMM1HGtMx","https://drive.google.com/thumbnail?sz=w1200&id=1xMVL1vYrHwSRIvxABW909zyXCyyD1fLd","https://drive.google.com/thumbnail?sz=w1200&id=1YhLbVjed6KPC-KXaZgLPGPM_K7hHk1T-"]}],"config":{"linkInstagram":"https://www.instagram.com/zahrtalandalus","brandSubtitle":"نقدم في مؤسسة زهرة الأندلس حلولاً متكاملة في توريد وتركيب الرخام والحجر الطبيعي والأعمال الهندسية، مع عناية دقيقة بالتفاصيل، واختيار واعٍ للمواد، وتنفيذ يوازن بين الجمال والمتانة في المشاريع السكنية والتجارية.","heroTitle":"شريك يعتمد عليه في الرخام والحجر الطبيعي والأعمال الهندسية","linkTiktok":"https://www.tiktok.com/@zahrtalandalus1","linkTwitter":"https://x.com/zahrtalandalus1","linkYoutube":"https://www.youtube.com/@zahrtalandalus1-b5l","linkSnapchat":"https://www.snapchat.com/add/zahrtalandalus","heroDesc":"نبني أعمالنا على فهم احتياج المشروع منذ البداية، ثم توفير و اختيار الخامات المناسبة، ثم التنفيذ بعناية تضمن جودة المظهر وطول العمر التشغيلي. نعمل بروح احترافية تجمع بين الخبرة الفنية، والالتزام بالمواعيد، والتنسيق السلس مع متطلبات العملاء والمواقع المختلفة.","logoUrl":"https://drive.google.com/thumbnail?sz=w1200&id=1-Nk1Wg2GV6FTtvquELG0tccIKmvnkcjg","linkFacebook":"https://www.facebook.com/profile.php?id=61591133261908","linkWhatsapp":"https://wa.me/966557278262","brandName":"مؤسسة زهرة الأندلس ","stats":[{"val":"+19","lbl":"سنوات خبرة في التوريد والتنفيذ"},{"val":"+149","lbl":"مشروعاً ناجحاً"},{"val":"24/7","lbl":"متابعة واستجابة"},{"val":"100%","lbl":"تركيز على الجودة"}]},"projects":[{"meta":"خدمات ","title":"تفصيل وتصميم و اشراف وتنفيذ","img":"https://drive.google.com/thumbnail?sz=w1200&id=1iKcU3cM3jeknOG4ldjfuBbdbtIrrQWLH","desc":"نقدم لك دليلاً شاملاً لتصميم وتفصيل وتركيب مغاسل الرخام الفاخرة بأسلوب هندسي دقيق. نضمن لك تنفيذ المشاريع بدءاً من الرفع المساحي والتصميم ثلاثي الأبعاد (3D)، مروراً بـ الإشراف الهندسي وانتهاءً بـ التركيب الاحترافي لضمان أعلى معايير الجودة.","id":1782295768095,"images":[]}]};
+      ZahratAndalusData.products = Array.isArray(ZahratAndalusData.products) ? ZahratAndalusData.products : [];
+      ZahratAndalusData.offers = Array.isArray(ZahratAndalusData.offers) ? ZahratAndalusData.offers : [];
+      ZahratAndalusData.projects = Array.isArray(ZahratAndalusData.projects) ? ZahratAndalusData.projects : [];
+      ZahratAndalusData.branches = Array.isArray(ZahratAndalusData.branches) ? ZahratAndalusData.branches : [];
       renderFrontendView();
       checkAdminSession();
     });
@@ -856,8 +944,12 @@
       const products = ZahratAndalusData.products || [];
       document.getElementById('view-products-grid').innerHTML = products.map((p, i) => renderMediaCard(p, 'خامة ممتازة', 'products', i)).join('');
 
+      const offers = (ZahratAndalusData.offers || []).filter(isOfferVisible);
+      document.getElementById('view-offers-grid').innerHTML = offers.map((offer, i) => renderOfferCard(offer, i)).join('') || '<div class="gallery-empty">لا توجد عروض منشورة حالياً.</div>';
+
       const projects = ZahratAndalusData.projects || [];
       document.getElementById('view-projects-grid').innerHTML = projects.map((p, i) => renderMediaCard(p, 'مشروع هندسي', 'projects', i)).join('');
+      initGalleryLazyLoading();
 
       const branches = ZahratAndalusData.branches || [];
       document.getElementById('view-branches-grid').innerHTML = branches.map((b, bIdx) => {
@@ -907,36 +999,122 @@
     }
 
 
+    function normalizeImageSource(url) {
+      if (!url) return '';
+      const value = String(url).trim();
+      return convertToDirectDriveLink(value);
+    }
     function normalizeGallery(item) {
       const legacy = item.img ? [item.img] : [];
       const extra = Array.isArray(item.images) ? item.images : [];
-      return [...new Set([...legacy, ...extra].filter(Boolean))];
+      return [...new Set([...legacy, ...extra].map(normalizeImageSource).filter(Boolean))];
+    }
+    function isOfferVisible(offer) {
+      if (!offer || offer.status === 'draft' || offer.status === 'hidden') return false;
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      if (offer.startDate) { const start = new Date(offer.startDate); if (!Number.isNaN(start.getTime()) && today < start) return false; }
+      if (offer.endDate) { const end = new Date(offer.endDate); if (!Number.isNaN(end.getTime())) { end.setHours(23, 59, 59, 999); if (today > end) return false; } }
+      return true;
+    }
+    function getOfferActionUrl(offer) {
+      const custom = String(offer.ctaUrl || '').trim();
+      if (custom) return custom;
+      const whatsapp = (ZahratAndalusData.config || {}).linkWhatsapp || '';
+      if (whatsapp) return whatsapp.startsWith('http') ? whatsapp : `https://wa.me/${whatsapp.replace(/\D/g, '')}`;
+      return '#quote-sec';
+    }
+    function renderOfferCard(offer, index) {
+      const images = normalizeGallery(offer);
+      const safeImages = images.length ? images : ['https://via.placeholder.com/600x380.png?text=Offer'];
+      const gallery = safeImages.map((src, imageIndex) => `<button class="gallery-thumb" onclick="openGallery('offers', ${index}, ${imageIndex})" aria-label="عرض صورة ${imageIndex + 1} من ${safeImages.length}"><img data-src="${src}" alt="${offer.title || 'عرض'}" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> ${safeImages.length}</span></button>`).join('');
+      const prices = offer.priceNew || offer.priceOld || offer.discount ? `<div class="offer-prices">${offer.priceNew ? `<span class="offer-price-new">${offer.priceNew}</span>` : ''}${offer.priceOld ? `<span class="offer-price-old">${offer.priceOld}</span>` : ''}${offer.discount ? `<span class="offer-discount">${offer.discount}</span>` : ''}</div>` : '';
+      return `<div class="offer-card item-card"><div class="item-media"><div class="gallery-track">${gallery}</div></div><div class="item-body"><span class="item-meta">${offer.meta || 'عرض خاص'}</span><h3 class="item-title">${offer.title || 'عرض جديد'}</h3><p class="item-desc">${offer.desc || ''}</p>${prices}<a class="offer-action" href="${getOfferActionUrl(offer)}" target="_blank" rel="noopener"><i class="fa-solid fa-paper-plane"></i> ${offer.ctaLabel || 'اطلب العرض الآن'}</a></div></div>`;
+    }
+    function isAnimatedImageSource(src) {
+      return /\.(gif|webp)(?:[?#].*)?$/i.test(String(src || ''));
+    }
+    function handleGalleryImageError(image) {
+      if (!image || image.dataset.fallbackApplied) return;
+      image.dataset.fallbackApplied = 'true';
+      image.dataset.src = 'https://via.placeholder.com/600x380.png?text=Image+Error';
+      image.src = image.dataset.src;
+      image.classList.remove('gallery-loading');
+      image.classList.add('gallery-loaded');
+      const mark = image.closest('.gallery-thumb')?.querySelector('.gallery-loading-mark');
+      if (mark) mark.innerHTML = '<i class="fa-solid fa-image-slash"></i>';
+    }
+    function loadGalleryImage(image, force = false) {
+      if (!image) return;
+      const src = image.dataset.src;
+      if (!src || (!force && image.dataset.loaded === 'true')) return;
+      image.dataset.loading = 'true';
+      image.classList.add('gallery-loading');
+      image.src = src;
+      image.onload = () => {
+        image.dataset.loaded = 'true';
+        image.dataset.loading = 'false';
+        image.classList.remove('gallery-loading');
+        image.classList.add('gallery-loaded');
+        const mark = image.closest('.gallery-thumb')?.querySelector('.gallery-loading-mark');
+        if (mark) mark.remove();
+      };
+      image.onerror = () => handleGalleryImageError(image);
+    }
+    function initGalleryLazyLoading() {
+      const images = document.querySelectorAll('.gallery-thumb img[data-src]');
+      if (!('IntersectionObserver' in window)) {
+        images.forEach(img => loadGalleryImage(img));
+        return;
+      }
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const image = entry.target;
+          if (isAnimatedImageSource(image.dataset.src)) {
+            image.dataset.motionDeferred = 'true';
+            image.classList.remove('gallery-loading');
+            const mark = image.closest('.gallery-thumb')?.querySelector('.gallery-loading-mark');
+            if (mark) mark.innerHTML = '<i class="fa-solid fa-play" title="اضغط لعرض الصورة المتحركة"></i>';
+          } else {
+            loadGalleryImage(image);
+          }
+          observer.unobserve(image);
+        });
+      }, { rootMargin: '240px 0px', threshold: 0.01 });
+      images.forEach(img => observer.observe(img));
     }
 
     function renderMediaCard(item, fallbackMeta, category, index) {
       const images = normalizeGallery(item);
       const safeImages = images.length ? images : ['https://via.placeholder.com/600x380.png?text=No+Image'];
-      const gallery = safeImages.map((src, imageIndex) => `<button class="gallery-thumb" onclick="openGallery('${category}', ${index}, ${imageIndex})" aria-label="عرض صورة ${imageIndex + 1} من ${safeImages.length}"><img src="${src}" alt="${item.title || 'صورة'}" loading="lazy" onerror="this.src='https://via.placeholder.com/600x380.png?text=Image+Error'"><span class="gallery-count"><i class="fa-solid fa-images"></i> ${safeImages.length}</span></button>`).join('');
+      const gallery = safeImages.map((src, imageIndex) => `<button class="gallery-thumb" onclick="openGallery('${category}', ${index}, ${imageIndex})" aria-label="عرض صورة ${imageIndex + 1} من ${safeImages.length}"><img data-src="${src}" alt="${item.title || 'صورة'}" loading="lazy" decoding="async" class="gallery-loading" onerror="handleGalleryImageError(this)"><span class="gallery-loading-mark" aria-hidden="true"><i class="fa-solid fa-spinner"></i></span><span class="gallery-count"><i class="fa-solid fa-images"></i> ${safeImages.length}</span></button>`).join('');
       return `<div class="item-card"><div class="item-media"><div class="gallery-track">${gallery}</div></div><div class="item-body"><span class="item-meta">${item.meta || fallbackMeta}</span><h3 class="item-title">${item.title || 'بدون عنوان'}</h3><p class="item-desc">${item.desc || ''}</p></div></div>`;
     }
 
     let activeGallery = { category: '', itemIndex: 0, imageIndex: 0, images: [] };
     function openGallery(category, itemIndex, imageIndex) {
-      const list = ZahratAndalusData[category] || [];
+      const list = category === 'offers' ? (ZahratAndalusData.offers || []).filter(isOfferVisible) : (ZahratAndalusData[category] || []);
       const item = list[itemIndex];
       if (!item) return;
       activeGallery = { category, itemIndex, imageIndex, images: normalizeGallery(item) };
       if (!activeGallery.images.length) return;
+      const deferredImage = document.querySelector(`.gallery-thumb img[data-src="${CSS.escape(activeGallery.images[imageIndex])}"]`);
+      if (deferredImage && deferredImage.dataset.motionDeferred === 'true') loadGalleryImage(deferredImage, true);
       updateGalleryLightbox();
       document.getElementById('galleryLightbox').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
     function updateGalleryLightbox() {
-      const item = (ZahratAndalusData[activeGallery.category] || [])[activeGallery.itemIndex] || {};
+      const sourceList = activeGallery.category === 'offers' ? (ZahratAndalusData.offers || []).filter(isOfferVisible) : (ZahratAndalusData[activeGallery.category] || []);
+      const item = sourceList[activeGallery.itemIndex] || {};
       const src = activeGallery.images[activeGallery.imageIndex];
       const image = document.getElementById('galleryLightboxImage');
-      image.src = src;
+      image.classList.remove('gallery-lightbox-ready');
+      image.classList.add('gallery-lightbox-loading');
       image.alt = item.title || 'صورة';
+      image.onload = () => { image.classList.remove('gallery-lightbox-loading'); image.classList.add('gallery-lightbox-ready'); };
+      image.onerror = () => { image.src = 'https://via.placeholder.com/980x720.png?text=Image+Error'; image.classList.remove('gallery-lightbox-loading'); image.classList.add('gallery-lightbox-ready'); };
+      image.src = src;
       document.getElementById('galleryLightboxCaption').textContent = `${item.title || ''} — ${activeGallery.imageIndex + 1} / ${activeGallery.images.length}`;
     }
     function moveGallery(step) {
@@ -1008,25 +1186,60 @@
     function updateAdminOverview() {
       const products = ZahratAndalusData.products || [];
       const projects = ZahratAndalusData.projects || [];
+      const offers = ZahratAndalusData.offers || [];
       const branches = ZahratAndalusData.branches || [];
-      const imageCount = [...products, ...projects].reduce((total, item) => total + normalizeGallery(item).length, 0);
+      const imageCount = [...products, ...offers, ...projects].reduce((total, item) => total + normalizeGallery(item).length, 0);
       const setText = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
       setText('adminProductsCount', products.length);
+      setText('adminOffersCount', offers.filter(isOfferVisible).length);
       setText('adminProjectsCount', projects.length);
       setText('adminBranchesCount', branches.length);
       setText('adminImagesCount', imageCount);
     }
 
+    let activeAdminFilter = 'all';
+    function setAdminFilter(filter, button) {
+      activeAdminFilter = filter || 'all';
+      document.querySelectorAll('.admin-filter-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.adminFilter === activeAdminFilter));
+      const input = document.getElementById('adminContentSearch');
+      filterAdminCards(input ? input.value : '');
+    }
+    function cardImageCount(card) {
+      const main = card.querySelectorAll('.form-control')[2];
+      const extra = card.querySelector('.gallery-links-input');
+      const links = extra ? extra.value.split(/\r?\n/).map(v => v.trim()).filter(Boolean) : [];
+      return (main && main.value.trim() ? 1 : 0) + links.length + (card.dataset.localGallery ? JSON.parse(card.dataset.localGallery || '[]').length : 0);
+    }
     function filterAdminCards(query) {
       const normalized = (query || '').trim().toLowerCase();
-      document.querySelectorAll('#admin-products-list .cms-card-item, #admin-projects-list .cms-card-item, #admin-branches-list .cms-card-item').forEach(card => {
-        card.style.display = !normalized || card.innerText.toLowerCase().includes(normalized) ? '' : 'none';
+      document.querySelectorAll('#admin-products-list .cms-card-item, #admin-offers-list .cms-card-item, #admin-projects-list .cms-card-item, #admin-branches-list .cms-card-item').forEach(card => {
+        const parentId = card.parentElement ? card.parentElement.id : '';
+        const isProduct = parentId === 'admin-products-list';
+        const isOffer = parentId === 'admin-offers-list';
+        const isProject = parentId === 'admin-projects-list';
+        const imageCount = cardImageCount(card);
+        const matchesText = !normalized || card.innerText.toLowerCase().includes(normalized);
+        const matchesFilter = activeAdminFilter === 'all' || (activeAdminFilter === 'products' && isProduct) || (activeAdminFilter === 'offers' && isOffer) || (activeAdminFilter === 'projects' && isProject) || (activeAdminFilter === 'missing' && (isProduct || isOffer || isProject) && imageCount === 0) || (activeAdminFilter === 'gallery' && (isProduct || isOffer || isProject) && imageCount > 1);
+        card.style.display = matchesText && matchesFilter ? '' : 'none';
       });
+    }
+    function updateAdminFilterCounts() {
+      const products = ZahratAndalusData.products || [];
+      const offers = ZahratAndalusData.offers || [];
+      const projects = ZahratAndalusData.projects || [];
+      const all = [...products, ...offers, ...projects];
+      const setText = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
+      setText('adminFilterAllCount', all.length);
+      setText('adminFilterProductsCount', products.length);
+      setText('adminFilterOffersCount', offers.length);
+      setText('adminFilterProjectsCount', projects.length);
+      setText('adminFilterMissingCount', all.filter(item => normalizeGallery(item).length === 0).length);
+      setText('adminFilterGalleryCount', all.filter(item => normalizeGallery(item).length > 1).length);
     }
     function clearAdminSearch() {
       const input = document.getElementById('adminContentSearch');
       if (input) input.value = '';
-      filterAdminCards('');
+      setAdminFilter('all', document.querySelector('.admin-filter-btn[data-admin-filter="all"]'));
     }
 
     function openAdminPanel() {
@@ -1100,6 +1313,26 @@
         }
       });
 
+      const offerCards = document.querySelectorAll('#admin-offers-list .cms-card-item');
+      offerCards.forEach((card, i) => {
+        const offer = ZahratAndalusData.offers[i];
+        if (!offer) return;
+        const get = field => card.querySelector(`[data-field="${field}"]`);
+        offer.title = get('title')?.value || '';
+        offer.meta = get('meta')?.value || '';
+        offer.img = get('img')?.value || '';
+        offer.desc = get('desc')?.value || '';
+        offer.priceOld = get('priceOld')?.value || '';
+        offer.priceNew = get('priceNew')?.value || '';
+        offer.discount = get('discount')?.value || '';
+        offer.startDate = get('startDate')?.value || '';
+        offer.endDate = get('endDate')?.value || '';
+        offer.status = get('status')?.value || 'published';
+        offer.ctaLabel = get('ctaLabel')?.value || '';
+        offer.ctaUrl = get('ctaUrl')?.value || '';
+        offer.images = readEditorImages(card);
+      });
+
       const projectCards = document.querySelectorAll('#admin-projects-list .cms-card-item');
       projectCards.forEach((card, i) => {
         if (ZahratAndalusData.projects[i]) {
@@ -1166,8 +1399,37 @@
           <div class="form-group"><label>رابط الصورة</label><input type="text" class="form-control" value="${p.img}"></div>
           <div class="form-group"><label>الوصف الفني</label><input type="text" class="form-control" value="${p.desc}"></div>
 
-          <div class="form-group"><label>صور إضافية للقسم</label><textarea class="form-control gallery-links-input" rows="2" placeholder="ضع رابطاً لكل صورة في سطر مستقل؛ يدعم GIF وWebP وروابط Google Drive"></textarea></div>
+          <div class="form-group"><label>صور إضافية للقسم</label><textarea class="form-control gallery-links-input" rows="2" placeholder="ضع رابطاً لكل صورة في سطر مستقل؛ يدعم GIF وWebP وروابط Google Drive">${(p.images || []).filter(src => src !== p.img).join('\n')}</textarea></div>
           <div class="form-group"><label>رفع صور من الجهاز</label><input type="file" class="form-control gallery-files-input" accept="image/*" multiple><span class="gallery-editor-help">الرفع الخفيف يحفظ الصور في المتصفح كمعاينة محلية؛ للصور الكبيرة يفضّل استخدام رابط مباشر.</span><div class="gallery-editor-preview"></div></div>
+        </div>
+      `).join('');
+
+      const offers = ZahratAndalusData.offers || [];
+      document.getElementById('admin-offers-list').innerHTML = offers.map((offer, index) => `
+        <div class="cms-card-item admin-offer-card">
+          <button class="cms-delete-btn" onclick="removeItemFromJSON('offers', ${index})"><i class="fa-solid fa-trash-can"></i></button>
+          <div class="form-row">
+            <div class="form-group"><label>عنوان العرض</label><input data-field="title" type="text" class="form-control" value="${offer.title || ''}"></div>
+            <div class="form-group"><label>التصنيف</label><input data-field="meta" type="text" class="form-control" value="${offer.meta || ''}"></div>
+          </div>
+          <div class="form-group"><label>رابط الصورة الرئيسية</label><input data-field="img" type="text" class="form-control" value="${offer.img || ''}"></div>
+          <div class="form-group"><label>وصف العرض</label><textarea data-field="desc" class="form-control" rows="3">${offer.desc || ''}</textarea></div>
+          <div class="form-row">
+            <div class="form-group"><label>السعر السابق</label><input data-field="priceOld" type="text" class="form-control" value="${offer.priceOld || ''}" placeholder="اختياري"></div>
+            <div class="form-group"><label>السعر الحالي</label><input data-field="priceNew" type="text" class="form-control" value="${offer.priceNew || ''}" placeholder="اختياري"></div>
+            <div class="form-group"><label>نسبة الخصم</label><input data-field="discount" type="text" class="form-control" value="${offer.discount || ''}" placeholder="مثال: 20%"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>بداية العرض</label><input data-field="startDate" type="date" class="form-control" value="${offer.startDate || ''}"></div>
+            <div class="form-group"><label>نهاية العرض</label><input data-field="endDate" type="date" class="form-control" value="${offer.endDate || ''}"></div>
+            <div class="form-group"><label>الحالة</label><select data-field="status" class="form-control"><option value="published" ${offer.status !== 'draft' && offer.status !== 'hidden' ? 'selected' : ''}>منشور</option><option value="draft" ${offer.status === 'draft' ? 'selected' : ''}>مسودة</option><option value="hidden" ${offer.status === 'hidden' ? 'selected' : ''}>مخفي</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>نص زر الإجراء</label><input data-field="ctaLabel" type="text" class="form-control" value="${offer.ctaLabel || ''}" placeholder="اطلب العرض الآن"></div>
+            <div class="form-group"><label>رابط زر الإجراء</label><input data-field="ctaUrl" type="text" class="form-control" value="${offer.ctaUrl || ''}" placeholder="اتركه فارغاً لاستخدام واتساب المؤسسة"></div>
+          </div>
+          <div class="form-group"><label>صور إضافية للعرض</label><textarea class="form-control gallery-links-input" rows="2" placeholder="ضع رابطاً لكل صورة في سطر مستقل">${(offer.images || []).filter(src => src !== offer.img).join('\n')}</textarea></div>
+          <div class="form-group"><label>رفع صور العرض من الجهاز</label><input type="file" class="form-control gallery-files-input" accept="image/*" multiple><span class="gallery-editor-help">يمكنك إضافة صور متعددة للعرض مع الحفاظ على الرابط الأساسي.</span><div class="gallery-editor-preview"></div></div>
         </div>
       `).join('');
 
@@ -1182,7 +1444,7 @@
           <div class="form-group"><label>رابط الصورة</label><input type="text" class="form-control" value="${p.img}"></div>
           <div class="form-group"><label>تفاصيل العمل</label><input type="text" class="form-control" value="${p.desc}"></div>
 
-          <div class="form-group"><label>صور إضافية للقسم</label><textarea class="form-control gallery-links-input" rows="2" placeholder="ضع رابطاً لكل صورة في سطر مستقل؛ يدعم GIF وWebP وروابط Google Drive"></textarea></div>
+          <div class="form-group"><label>صور إضافية للقسم</label><textarea class="form-control gallery-links-input" rows="2" placeholder="ضع رابطاً لكل صورة في سطر مستقل؛ يدعم GIF وWebP وروابط Google Drive">${(p.images || []).filter(src => src !== p.img).join('\n')}</textarea></div>
           <div class="form-group"><label>رفع صور من الجهاز</label><input type="file" class="form-control gallery-files-input" accept="image/*" multiple><span class="gallery-editor-help">الرفع الخفيف يحفظ الصور في المتصفح كمعاينة محلية؛ للصور الكبيرة يفضّل استخدام رابط مباشر.</span><div class="gallery-editor-preview"></div></div>
         </div>
       `).join('');
@@ -1221,10 +1483,14 @@
       }).join('');
       bindGalleryEditors();
       updateAdminOverview();
+      updateAdminFilterCounts();
+      const search = document.getElementById('adminContentSearch');
+      if (search) filterAdminCards(search.value);
     }
 
-    function addNewProductToJSON() { syncCurrentInputs(); ZahratAndalusData.products.push({ id: Date.now(), title: "خامة جديدة", desc: "", meta: "", img: "" }); refreshAdminLists(); }
-    function addNewProjectToJSON() { syncCurrentInputs(); ZahratAndalusData.projects.push({ id: Date.now(), title: "مشروع جديد", desc: "", meta: "", img: "" }); refreshAdminLists(); }
+    function addNewProductToJSON() { syncCurrentInputs(); ZahratAndalusData.products.push({ id: Date.now(), title: "خامة جديدة", desc: "", meta: "", img: "", images: [] }); refreshAdminLists(); }
+    function addNewOfferToJSON() { syncCurrentInputs(); ZahratAndalusData.offers.push({ id: Date.now(), title: "عرض جديد", desc: "", meta: "عرض خاص", img: "", images: [], priceOld: "", priceNew: "", discount: "", startDate: "", endDate: "", status: "published", ctaLabel: "اطلب العرض الآن", ctaUrl: "" }); refreshAdminLists(); }
+    function addNewProjectToJSON() { syncCurrentInputs(); ZahratAndalusData.projects.push({ id: Date.now(), title: "مشروع جديد", desc: "", meta: "", img: "", images: [] }); refreshAdminLists(); }
     function addNewBranchToJSON() { syncCurrentInputs(); ZahratAndalusData.branches.push({ id: Date.now(), name: "فرع جديد", manager: "", phone: "", mapUrl: "", banks: [] }); refreshAdminLists(); }
 
     function addSubBankToBranch(branchIndex) {
@@ -1242,8 +1508,9 @@
     async function saveAdminDashboard() {
       syncCurrentInputs();
       ZahratAndalusData.config.logoUrl = convertToDirectDriveLink(ZahratAndalusData.config.logoUrl);
-      ZahratAndalusData.products.forEach((p, i) => { if(p.img) ZahratAndalusData.products[i].img = convertToDirectDriveLink(p.img); });
-      ZahratAndalusData.projects.forEach((p, i) => { if(p.img) ZahratAndalusData.projects[i].img = convertToDirectDriveLink(p.img); });
+      ZahratAndalusData.products.forEach((p, i) => { if(p.img) ZahratAndalusData.products[i].img = convertToDirectDriveLink(p.img); if(Array.isArray(p.images)) ZahratAndalusData.products[i].images = p.images.map(convertToDirectDriveLink); });
+      ZahratAndalusData.projects.forEach((p, i) => { if(p.img) ZahratAndalusData.projects[i].img = convertToDirectDriveLink(p.img); if(Array.isArray(p.images)) ZahratAndalusData.projects[i].images = p.images.map(convertToDirectDriveLink); });
+      ZahratAndalusData.offers.forEach((p, i) => { if(p.img) ZahratAndalusData.offers[i].img = convertToDirectDriveLink(p.img); if(Array.isArray(p.images)) ZahratAndalusData.offers[i].images = p.images.map(convertToDirectDriveLink); });
 
       const success = await StorageEngine.save(ZahratAndalusData);
       if(success) { renderFrontendView(); closeAdminPanel(); alert("تم حفظ وتحديث المنصة السحابية بنجاح!"); }
@@ -1261,7 +1528,19 @@
     }
 
     function exportCleanClientHtml() {
+      syncCurrentInputs();
+      ZahratAndalusData.config.logoUrl = convertToDirectDriveLink(ZahratAndalusData.config.logoUrl || '');
+      [...(ZahratAndalusData.products || []), ...(ZahratAndalusData.offers || []), ...(ZahratAndalusData.projects || [])].forEach(item => {
+        if (item.img) item.img = normalizeImageSource(item.img);
+        if (Array.isArray(item.images)) item.images = item.images.map(normalizeImageSource).filter(Boolean);
+      });
       const cloneDoc = document.documentElement.cloneNode(true);
+      const exportDataLiteral = JSON.stringify(ZahratAndalusData).replace(/</g, "\\u003c");
+      cloneDoc.querySelectorAll('script').forEach(script => {
+        if (script.textContent.includes('ZahratAndalusData = await StorageEngine.get();')) {
+          script.textContent = script.textContent.replace('ZahratAndalusData = await StorageEngine.get();', `ZahratAndalusData = ${exportDataLiteral};`);
+        }
+      });
       
       const adminSelectors = ['#adminBar', '#loginOverlay', '#adminModal', '.cms-delete-btn'];
       adminSelectors.forEach(selector => {
